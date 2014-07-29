@@ -1,0 +1,9 @@
+{
+  "name": "wizard-mvc",
+  "description": "Wizard sample applications written in front end MVC frameworks.",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "express": "3.x"
+  }
+}

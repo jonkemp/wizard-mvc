@@ -1,0 +1,321 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>backbone-wizard</title>
+
+    <!-- build:css styles/vendor.css -->
+    <link rel="stylesheet" href="bower_components/foundation/css/foundation.css" />
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="css/main.css">
+    <!-- endbuild -->
+</head>
+
+<body>
+
+<div id="wizard"></div>
+
+<script type="text/template" id="item-template">
+    <div class="row">
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="#">My Items</a></h1>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="row" style="margin-bottom: 1em">
+        <ul class="tabs">
+            <li class="tab-title active"><a href="#/">Shopping Cart</a></li>
+            <li class="tab-title"><a href="#/verify">Customer Info</a></li>
+            <li class="tab-title"><a href="#/payment">Payment Info</a></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="panel">
+            <h1>Shopping Cart</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <table>
+            <thead>
+                <tr>
+                    <th width="200">Name</th>
+                    <th width="520">Description</th>
+                    <th width="150">Quantity</th>
+                    <th width="150">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% _.each(items, function (item) { %>
+                <tr>
+                    <td><%= item.name %></td>
+                    <td><%= item.description %></td>
+                    <td><%= item.quantity %></td>
+                    <td><%= item.price %></td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <a href="#" id="next" class="button right">Next</a>
+    </div>
+</script>
+
+<script type="text/template" id="customer-template">
+    <div class="row">
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="#">Customer Info</a></h1>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="row" style="margin-bottom: 1em">
+        <ul class="tabs">
+            <li class="tab-title"><a href="#/">Shopping Cart</a></li>
+            <li class="tab-title active"><a href="#/verify">Customer Info</a></li>
+            <li class="tab-title"><a href="#/payment">Payment Info</a></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="panel">
+            <h1>Verify Your Information</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <form>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Name
+                        <input id="name" type="text" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Address
+                        <input id="address" type="text" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-4 columns">
+                    <label>City
+                        <input id="city" type="text" />
+                    </label>
+                </div>
+                <div class="large-4 columns">
+                    <label>State
+                        <select id="state">
+                            <option value="">Select</option>
+                            <option value="TN">TN</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="large-4 columns">
+                    <label>Zip Code
+                        <input id="zipcode" type="text" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-6 columns">
+                    <label>Email
+                        <input id="email" type="text" />
+                    </label>
+                </div>
+                <div class="large-6 columns">
+                    <label>Phone
+                        <input id="phone" type="text" />
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <a href="#" id="next" class="button right">Next</a>
+        <a href="#" id="back" class="button secondary left">Back</a>
+    </div>
+</script>
+
+<script type="text/template" id="payment-template">
+    <div class="row">
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="#">Payment Info</a></h1>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="row" style="margin-bottom: 1em">
+        <ul class="tabs">
+            <li class="tab-title"><a href="#/">Shopping Cart</a></li>
+            <li class="tab-title"><a href="#/verify">Customer Info</a></li>
+            <li class="tab-title active"><a href="#/payment">Payment Info</a></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="panel">
+            <h1>Payment Details</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <form>
+            <div class="row">
+                <div class="large-4 columns">
+                    <label>Name on Card
+                        <input id="cc-name" type="text" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-4 columns">
+                    <label>Type
+                        <select id="cc-type">
+                            <option value="">Select</option>
+                            <option value="VISA">Visa</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-4 columns">
+                    <label>Number
+                        <input id="cc-number" type="text" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-4 columns">
+                    <label>Expiration Date
+                        <input id="cc-exp-date" type="text" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-4 columns">
+                    <label>Security Code
+                        <input id="cc-security-code" type="text" />
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <a href="#" id="next" class="button right">Next</a>
+        <a href="#" id="back" class="button secondary left">Back</a>
+    </div>
+</script>
+
+<script type="text/template" id="success-template">
+    <div class="row">
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="#">Order Complete</a></h1>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="row">
+        <h1>Success!</h1>
+
+        <div class="panel">
+            <h3>Order Details</h3>
+            <p><% _.each(items, function (item) { %>
+                    <%= item.name %><br/>
+                <% }); %></p>
+
+            <hr/>
+
+            <h3>Customer Details</h3>
+            <p>Name: <%= name %><br/>
+                Address: <%= address %><br/>
+                City: <%= city %><br/>
+                State: <%= state %><br/>
+                Zip Code: <%= zipcode %><br/>
+                Email: <%= email %><br/>
+                Phone: <%= phone %></p>
+
+            <hr/>
+
+            <h3>Payment Details</h3>
+            <p>Name on Card: <%= ccName %><br/>
+                Type: <%= ccType %><br/>
+                Number: <%= ccNumber %><br/>
+                Expiration Date: <%= ccExpDate %></p>
+        </div>
+    </div>
+</script>
+
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/backbone/backbone.js"></script>
+<script src="bower_components/backbone.stickit/backbone.stickit.js"></script>
+<!-- endbower -->
+<script src="bower_components/foundation/js/foundation/foundation.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.abide.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.equalizer.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.interchange.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.dropdown.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.accordion.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.alert.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.clearing.js"></script>
+<script src="bower_components/foundation/js/vendor/jquery.cookie.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.joyride.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.magellan.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.offcanvas.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.orbit.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.reveal.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.slider.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.tab.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.tooltip.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.topbar.js"></script>
+<!-- endbuild -->
+
+<!-- build:js scripts/main.js -->
+<script src="js/main.js"></script>
+<script src="js/router.js"></script>
+<script src="js/models/transaction.js"></script>
+<script src="js/models/item.js"></script>
+<script src="js/models/state.js"></script>
+<script src="js/collections/item-list.js"></script>
+<script src="js/views/item.js"></script>
+<script src="js/views/customer.js"></script>
+<script src="js/views/payment.js"></script>
+<script src="js/views/success.js"></script>
+<script src="js/controller.js"></script>
+<!-- endbuild -->
+
+<script>
+    $(document).foundation();
+</script>
+</body>
+
+</html>
