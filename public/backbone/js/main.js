@@ -26,7 +26,7 @@ window.BackboneWizard = {
 
         self.wizardRouter = new BackboneWizard.Routers.WizardRouter();
 
-        Backbone.history.start();
+        Backbone.history.start({ root: '/backbone/' });
     }
 };
 
