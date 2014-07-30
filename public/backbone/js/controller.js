@@ -1,4 +1,4 @@
-/*global BackboneWizard*/
+/*global $, BackboneWizard*/
 
 BackboneWizard.Controllers = BackboneWizard.Controllers || {};
 
@@ -28,8 +28,10 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
 
         showVerify: function () {
             if (BackboneWizard.state.get('current') !== 'success') {
-                this.currentView.remove();
-                this.currentView.off();
+                if (this.currentView) {
+                    this.currentView.remove();
+                    this.currentView.off();
+                }
 
                 BackboneWizard.wizardRouter.navigate('#/verify');
 
@@ -46,8 +48,10 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
 
         showPayment: function () {
             if (BackboneWizard.state.get('current') !== 'success') {
-                this.currentView.remove();
-                this.currentView.off();
+                if (this.currentView) {
+                    this.currentView.remove();
+                    this.currentView.off();
+                }
 
                 BackboneWizard.wizardRouter.navigate('#/payment');
 
