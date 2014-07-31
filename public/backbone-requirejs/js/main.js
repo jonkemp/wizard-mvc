@@ -1,0 +1,38 @@
+/* global require */
+'use strict';
+
+require.config({
+    paths: {
+        'jquery': '../bower_components/jquery/dist/jquery',
+        'underscore': '../bower_components/underscore/underscore',
+        'backbone': '../bower_components/backbone/backbone',
+        'backbone.stickit': '../bower_components/backbone.stickit/backbone.stickit',
+        'text': '../bower_components/requirejs-text/text'
+    }
+});
+
+require([
+    'backbone',
+    'jquery',
+    'collections/item-list',
+    'models/transaction',
+    'models/state',
+    'router',
+    'app'
+], function (Backbone, $, ItemList, Transaction, State, WizardRouter, backboneWizard) {
+    backboneWizard.itemList = new ItemList();
+    backboneWizard.transaction = new Transaction();
+    backboneWizard.state = new State({ 'current': 'index' });
+
+    $.get('./appData.json').done(function (data) {
+        backboneWizard.transaction.set(data);
+    });
+
+    $.get('./itemData.json').done(function (data) {
+        backboneWizard.itemList.add(data, { merge: true });
+    });
+
+    backboneWizard.wizardRouter = new WizardRouter();
+
+    Backbone.history.start({ root: '/backbone/' });
+});

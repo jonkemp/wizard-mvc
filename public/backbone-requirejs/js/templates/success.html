@@ -1,0 +1,39 @@
+    <div class="row">
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="#">Order Complete</a></h1>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="row">
+        <h1>Success!</h1>
+
+        <div class="panel">
+            <h3>Order Details</h3>
+            <p><% _.each(items, function (item) { %>
+                    <%= item.name %><br/>
+                <% }); %></p>
+
+            <hr/>
+
+            <h3>Customer Details</h3>
+            <p>Name: <%= name %><br/>
+                Address: <%= address %><br/>
+                City: <%= city %><br/>
+                State: <%= state %><br/>
+                Zip Code: <%= zipcode %><br/>
+                Email: <%= email %><br/>
+                Phone: <%= phone %></p>
+
+            <hr/>
+
+            <h3>Payment Details</h3>
+            <p>Name on Card: <%= ccName %><br/>
+                Type: <%= ccType %><br/>
+                Number: <%= ccNumber %><br/>
+                Expiration Date: <%= ccExpDate %></p>
+        </div>
+    </div>
