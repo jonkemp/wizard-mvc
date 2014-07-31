@@ -52,7 +52,7 @@ define([
             event.preventDefault();
 
             if (this.validate()) {
-                backboneWizard.state.set({ 'current': 'payment' });
+                backboneWizard.state = 'payment';
                 this.trigger('wizard:payment');
             }
         },
@@ -60,7 +60,7 @@ define([
         previousStep: function (event) {
             event.preventDefault();
 
-            backboneWizard.state.set({ 'current': 'index' });
+            backboneWizard.state = 'index';
             this.trigger('wizard:index');
         },
 

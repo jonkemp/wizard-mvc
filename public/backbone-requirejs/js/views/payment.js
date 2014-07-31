@@ -50,7 +50,7 @@ define([
             event.preventDefault();
 
             if (this.validate()) {
-                backboneWizard.state.set({ 'current': 'success' });
+                backboneWizard.state = 'success';
                 this.trigger('wizard:success');
             }
         },
@@ -58,7 +58,7 @@ define([
         previousStep: function (event) {
             event.preventDefault();
 
-            backboneWizard.state.set({ 'current': 'verify' });
+            backboneWizard.state = 'verify';
             this.trigger('wizard:verify');
         },
 

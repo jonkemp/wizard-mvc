@@ -16,13 +16,12 @@ require([
     'jquery',
     'collections/item-list',
     'models/transaction',
-    'models/state',
     'router',
     'app'
-], function (Backbone, $, ItemList, Transaction, State, WizardRouter, backboneWizard) {
+], function (Backbone, $, ItemList, Transaction, WizardRouter, backboneWizard) {
     backboneWizard.itemList = new ItemList();
     backboneWizard.transaction = new Transaction();
-    backboneWizard.state = new State({ 'current': 'index' });
+    backboneWizard.state = 'index';
 
     $.get('./appData.json').done(function (data) {
         backboneWizard.transaction.set(data);

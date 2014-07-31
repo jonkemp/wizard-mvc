@@ -32,7 +32,7 @@ define([
 
             this.model.set({ items: this.collection.toJSON() });
 
-            backboneWizard.state.set({ 'current': 'verify' });
+            backboneWizard.state = 'verify';
             this.trigger('wizard:verify');
         }
 

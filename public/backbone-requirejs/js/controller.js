@@ -12,7 +12,7 @@ define([
     return {
 
         index: function () {
-            if (backboneWizard.state.get('current') !== 'success') {
+            if (backboneWizard.state !== 'success') {
                 if (this.currentView) {
                     this.currentView.remove();
                     this.currentView.off();
@@ -31,7 +31,7 @@ define([
         },
 
         showVerify: function () {
-            if (backboneWizard.state.get('current') !== 'success') {
+            if (backboneWizard.state !== 'success') {
                 if (this.currentView) {
                     this.currentView.remove();
                     this.currentView.off();
@@ -51,7 +51,7 @@ define([
         },
 
         showPayment: function () {
-            if (backboneWizard.state.get('current') !== 'success') {
+            if (backboneWizard.state !== 'success') {
                 if (this.currentView) {
                     this.currentView.remove();
                     this.currentView.off();
@@ -71,7 +71,7 @@ define([
         },
 
         showSuccess: function () {
-            var state = backboneWizard.state.get('current');
+            var state = backboneWizard.state;
 
             if (state === 'success') {
                 this.currentView.remove();
