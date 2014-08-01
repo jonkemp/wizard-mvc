@@ -9,7 +9,7 @@
 
 ## Get Started
 
-To get started, run `node server.js` and browse to http://localhost:3000/.
+To get started, run `node server.js` and browse to [http://localhost:3000/](http://localhost:3000/).
 
 ## License 
 
