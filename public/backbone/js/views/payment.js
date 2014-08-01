@@ -46,7 +46,7 @@ BackboneWizard.Views = BackboneWizard.Views || {};
             event.preventDefault();
 
             if (this.validate()) {
-                BackboneWizard.state.set({ 'current': 'success' });
+                BackboneWizard.state = 'success';
                 this.trigger('wizard:success');
             }
         },
@@ -54,7 +54,7 @@ BackboneWizard.Views = BackboneWizard.Views || {};
         previousStep: function (event) {
             event.preventDefault();
 
-            BackboneWizard.state.set({ 'current': 'verify' });
+            BackboneWizard.state = 'verify';
             this.trigger('wizard:verify');
         },
 

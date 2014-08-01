@@ -8,7 +8,7 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
     BackboneWizard.Controllers.WizardController = {
 
         index: function () {
-            if (BackboneWizard.state.get('current') !== 'success') {
+            if (BackboneWizard.state !== 'success') {
                 if (this.currentView) {
                     this.currentView.remove();
                     this.currentView.off();
@@ -27,7 +27,7 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
         },
 
         showVerify: function () {
-            if (BackboneWizard.state.get('current') !== 'success') {
+            if (BackboneWizard.state !== 'success') {
                 if (this.currentView) {
                     this.currentView.remove();
                     this.currentView.off();
@@ -47,7 +47,7 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
         },
 
         showPayment: function () {
-            if (BackboneWizard.state.get('current') !== 'success') {
+            if (BackboneWizard.state !== 'success') {
                 if (this.currentView) {
                     this.currentView.remove();
                     this.currentView.off();
@@ -67,7 +67,7 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
         },
 
         showSuccess: function () {
-            var state = BackboneWizard.state.get('current');
+            var state = BackboneWizard.state;
 
             if (state === 'success') {
                 this.currentView.remove();

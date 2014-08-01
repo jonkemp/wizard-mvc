@@ -14,7 +14,7 @@ window.BackboneWizard = {
 
         self.itemList = new BackboneWizard.Collections.ItemList();
         self.transaction = new BackboneWizard.Models.Transaction();
-        self.state = new BackboneWizard.Models.State({ 'current': 'index' });
+        self.state = 'index';
 
         $.get('./appData.json').done(function (data) {
             self.transaction.set(data);

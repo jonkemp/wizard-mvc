@@ -48,7 +48,7 @@ BackboneWizard.Views = BackboneWizard.Views || {};
             event.preventDefault();
 
             if (this.validate()) {
-                BackboneWizard.state.set({ 'current': 'payment' });
+                BackboneWizard.state = 'payment';
                 this.trigger('wizard:payment');
             }
         },
@@ -56,7 +56,7 @@ BackboneWizard.Views = BackboneWizard.Views || {};
         previousStep: function (event) {
             event.preventDefault();
 
-            BackboneWizard.state.set({ 'current': 'index' });
+            BackboneWizard.state = 'index';
             this.trigger('wizard:index');
         },
 
