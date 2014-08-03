@@ -1,4 +1,4 @@
-/*global BackboneWizard, Backbone, _*/
+/*global BackboneWizard, Backbone, _, $*/
 
 BackboneWizard.Views = BackboneWizard.Views || {};
 
