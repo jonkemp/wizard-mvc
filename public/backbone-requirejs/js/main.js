@@ -33,5 +33,5 @@ require([
 
     backboneWizard.wizardRouter = new WizardRouter();
 
-    Backbone.history.start({ root: '/backbone/' });
+    Backbone.history.start({ root: '/backbone-requirejs/' });
 });
