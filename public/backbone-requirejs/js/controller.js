@@ -14,8 +14,7 @@ define([
         index: function () {
             if (backboneWizard.state !== 'success') {
                 if (this.currentView) {
-                    this.currentView.remove();
-                    this.currentView.off();
+                    this.currentView.close();
                 }
 
                 backboneWizard.wizardRouter.navigate('#/');
@@ -33,9 +32,7 @@ define([
         showVerify: function () {
             if (backboneWizard.state !== 'success') {
                 if (this.currentView) {
-                    this.currentView.remove();
-                    this.currentView.off();
-                }
+                    this.currentView.close();                }
 
                 backboneWizard.wizardRouter.navigate('#/verify');
 
@@ -53,8 +50,7 @@ define([
         showPayment: function () {
             if (backboneWizard.state !== 'success') {
                 if (this.currentView) {
-                    this.currentView.remove();
-                    this.currentView.off();
+                    this.currentView.close();
                 }
 
                 backboneWizard.wizardRouter.navigate('#/payment');
@@ -74,8 +70,7 @@ define([
             var state = backboneWizard.state;
 
             if (state === 'success') {
-                this.currentView.remove();
-                this.currentView.off();
+                this.currentView.close();
 
                 backboneWizard.wizardRouter.navigate('#/success');
 

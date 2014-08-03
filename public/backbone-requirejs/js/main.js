@@ -19,6 +19,13 @@ require([
     'router',
     'app'
 ], function (Backbone, $, ItemList, Transaction, WizardRouter, backboneWizard) {
+
+    // Add close method
+    Backbone.View.prototype.close = function () {
+        this.remove();
+        this.off();
+    };
+
     backboneWizard.itemList = new ItemList();
     backboneWizard.transaction = new Transaction();
     backboneWizard.state = 'index';
