@@ -1,5 +1,10 @@
 /* global BackboneWizard, Backbone, $ */
 
+// Add close method
+Backbone.View.prototype.close = function () {
+    this.remove();
+    this.off();
+};
 
 window.BackboneWizard = {
     Models: {},

@@ -10,8 +10,7 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
         index: function () {
             if (BackboneWizard.state !== 'success') {
                 if (this.currentView) {
-                    this.currentView.remove();
-                    this.currentView.off();
+                    this.currentView.close();
                 }
 
                 BackboneWizard.wizardRouter.navigate('#/');
@@ -29,8 +28,7 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
         showVerify: function () {
             if (BackboneWizard.state !== 'success') {
                 if (this.currentView) {
-                    this.currentView.remove();
-                    this.currentView.off();
+                    this.currentView.close();
                 }
 
                 BackboneWizard.wizardRouter.navigate('#/verify');
@@ -49,8 +47,7 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
         showPayment: function () {
             if (BackboneWizard.state !== 'success') {
                 if (this.currentView) {
-                    this.currentView.remove();
-                    this.currentView.off();
+                    this.currentView.close();
                 }
 
                 BackboneWizard.wizardRouter.navigate('#/payment');
@@ -70,8 +67,7 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
             var state = BackboneWizard.state;
 
             if (state === 'success') {
-                this.currentView.remove();
-                this.currentView.off();
+                this.currentView.close();
 
                 BackboneWizard.wizardRouter.navigate('#/success');
 
