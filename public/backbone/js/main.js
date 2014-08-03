@@ -1,4 +1,4 @@
-/* global BackboneWizard, Backbone, $ */
+/* global BackboneWizard, TemplateManager, Backbone, $ */
 
 // Add close method
 Backbone.View.prototype.close = function () {
@@ -16,6 +16,11 @@ window.BackboneWizard = {
         'use strict';
 
         var self = this;
+
+        TemplateManager.template('js/templates/item.html');
+        TemplateManager.template('js/templates/customer.html');
+        TemplateManager.template('js/templates/payment.html');
+        TemplateManager.template('js/templates/success.html');
 
         self.itemList = new BackboneWizard.Collections.ItemList();
         self.transaction = new BackboneWizard.Models.Transaction();
