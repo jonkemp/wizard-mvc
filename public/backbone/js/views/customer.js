@@ -1,4 +1,4 @@
-/*global BackboneWizard, Backbone, _, $*/
+/*global BackboneWizard, TemplateManager, Backbone, _, $*/
 
 BackboneWizard.Views = BackboneWizard.Views || {};
 
@@ -7,7 +7,7 @@ BackboneWizard.Views = BackboneWizard.Views || {};
 
     BackboneWizard.Views.CustomerView = Backbone.View.extend({
 
-        template: _.template( $('#customer-template').html() ),
+        template: 'js/templates/customer.html',
 
         className: 'row',
 
@@ -39,8 +39,14 @@ BackboneWizard.Views = BackboneWizard.Views || {};
         },
 
         render: function () {
-            this.$el.html(this.template(this.model.attributes));
-            this.stickit();
+            var view = this;
+
+            TemplateManager.template( view.template )
+                .done(function (content) {
+                    view.$el.html( content( view.model.toJSON() ) );
+                    view.stickit();
+                });
+
             return this;
         },
 

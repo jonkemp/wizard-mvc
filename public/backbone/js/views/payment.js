@@ -1,4 +1,4 @@
-/*global BackboneWizard, Backbone, _, $*/
+/*global BackboneWizard, TemplateManager, Backbone, _, $*/
 
 BackboneWizard.Views = BackboneWizard.Views || {};
 
@@ -7,7 +7,7 @@ BackboneWizard.Views = BackboneWizard.Views || {};
 
     BackboneWizard.Views.PaymentView = Backbone.View.extend({
 
-        template: _.template( $('#payment-template').html() ),
+        template: 'js/templates/payment.html',
 
         className: 'row',
 
@@ -37,8 +37,14 @@ BackboneWizard.Views = BackboneWizard.Views || {};
         },
 
         render: function () {
-            this.$el.html(this.template(this.model.attributes));
-            this.stickit();
+            var view = this;
+
+            TemplateManager.template( view.template )
+                .done(function (content) {
+                    view.$el.html( content( view.model.attributes ) );
+                    view.stickit();
+                });
+
             return this;
         },
 
