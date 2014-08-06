@@ -17,10 +17,11 @@ window.BackboneWizard = {
 
         var self = this;
 
-        TemplateManager.template('js/templates/item.html');
-        TemplateManager.template('js/templates/customer.html');
-        TemplateManager.template('js/templates/payment.html');
-        TemplateManager.template('js/templates/success.html');
+        self.templateManager = new TemplateManager();
+        self.templateManager.template('js/templates/item.html');
+        self.templateManager.template('js/templates/customer.html');
+        self.templateManager.template('js/templates/payment.html');
+        self.templateManager.template('js/templates/success.html');
 
         self.itemList = new BackboneWizard.Collections.ItemList();
         self.transaction = new BackboneWizard.Models.Transaction();

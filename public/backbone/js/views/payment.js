@@ -39,7 +39,7 @@ BackboneWizard.Views = BackboneWizard.Views || {};
         render: function () {
             var view = this;
 
-            TemplateManager.template( view.template )
+            BackboneWizard.templateManager.template( view.template )
                 .done(function (content) {
                     view.$el.html( content( view.model.attributes ) );
                     view.stickit();
