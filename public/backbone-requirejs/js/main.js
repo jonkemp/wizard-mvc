@@ -3,11 +3,11 @@
 
 require.config({
     paths: {
-        'jquery': '../bower_components/jquery/dist/jquery',
-        'underscore': '../bower_components/underscore/underscore',
-        'backbone': '../bower_components/backbone/backbone',
-        'backbone.stickit': '../bower_components/backbone.stickit/backbone.stickit',
-        'text': '../bower_components/requirejs-text/text'
+        'jquery': '/bower_components/jquery/dist/jquery',
+        'underscore': '/bower_components/underscore/underscore',
+        'backbone': '/bower_components/backbone/backbone',
+        'backbone.stickit': '/bower_components/backbone.stickit/backbone.stickit',
+        'text': '/bower_components/requirejs-text/text'
     }
 });
 
