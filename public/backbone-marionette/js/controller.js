@@ -1,4 +1,4 @@
-/*global BackboneWizard, $*/
+/*global BackboneWizard, app, $*/
 
 BackboneWizard.Controllers = BackboneWizard.Controllers || {};
 
@@ -9,18 +9,14 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
 
         index: function () {
             if (BackboneWizard.state !== 'success') {
-                if (this.currentView) {
-                    this.currentView.remove();
-                    this.currentView.off();
-                }
 
                 BackboneWizard.wizardRouter.navigate('#/');
 
-                this.itemView = this.currentView = new BackboneWizard.Views.ListView({ model: BackboneWizard.transaction, collection: BackboneWizard.itemList });
+                var itemView = new BackboneWizard.Views.ListView({ model: BackboneWizard.transaction, collection: BackboneWizard.itemList });
 
-                this.itemView.on('wizard:verify', this.showVerify, this);
+                itemView.on('wizard:verify', this.showVerify, this);
 
-                $('#wizard').html(this.itemView.render().el);
+                app.wizard.show(itemView);
             } else {
                 this.showSuccess();
             }
@@ -28,19 +24,15 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
 
         showVerify: function () {
             if (BackboneWizard.state !== 'success') {
-                if (this.currentView) {
-                    this.currentView.remove();
-                    this.currentView.off();
-                }
 
                 BackboneWizard.wizardRouter.navigate('#/verify');
 
-                this.customerView = this.currentView = new BackboneWizard.Views.CustomerView({ model: BackboneWizard.transaction });
+                var customerView = new BackboneWizard.Views.CustomerView({ model: BackboneWizard.transaction });
 
-                this.customerView.on('wizard:payment', this.showPayment, this);
-                this.customerView.on('wizard:index', this.index, this);
+                customerView.on('wizard:payment', this.showPayment, this);
+                customerView.on('wizard:index', this.index, this);
 
-                $('#wizard').html(this.customerView.render().el);
+                app.wizard.show(customerView);
             } else {
                 this.showSuccess();
             }
@@ -48,19 +40,15 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
 
         showPayment: function () {
             if (BackboneWizard.state !== 'success') {
-                if (this.currentView) {
-                    this.currentView.remove();
-                    this.currentView.off();
-                }
 
                 BackboneWizard.wizardRouter.navigate('#/payment');
 
-                this.paymentView = this.currentView = new BackboneWizard.Views.PaymentView({ model: BackboneWizard.transaction });
+                var paymentView = new BackboneWizard.Views.PaymentView({ model: BackboneWizard.transaction });
 
-                this.paymentView.on('wizard:success', this.showSuccess, this);
-                this.paymentView.on('wizard:verify', this.showVerify, this);
+                paymentView.on('wizard:success', this.showSuccess, this);
+                paymentView.on('wizard:verify', this.showVerify, this);
 
-                $('#wizard').html(this.paymentView.render().el);
+                app.wizard.show(paymentView);
             } else {
                 this.showSuccess();
             }
@@ -70,13 +58,12 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
             var state = BackboneWizard.state;
 
             if (state === 'success') {
-                this.currentView.remove();
-                this.currentView.off();
 
                 BackboneWizard.wizardRouter.navigate('#/success');
 
-                this.successView = this.currentView = new BackboneWizard.Views.SuccessView({ model: BackboneWizard.transaction });
-                $('#wizard').html(this.successView.render().el);
+                var successView = new BackboneWizard.Views.SuccessView({ model: BackboneWizard.transaction });
+
+                app.wizard.show(successView);
             }
 
             if (state === 'index') {
