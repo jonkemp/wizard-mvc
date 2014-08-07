@@ -1,36 +1,33 @@
-/* global BackboneWizard, Backbone, $ */
-
+/* global BackboneWizard, Marionette, Backbone, $ */
 
 window.BackboneWizard = {
     Models: {},
     Collections: {},
     Views: {},
     Controllers: {},
-    Routers: {},
-    init: function () {
-        'use strict';
-
-        var self = this;
-
-        self.itemList = new BackboneWizard.Collections.ItemList();
-        self.transaction = new BackboneWizard.Models.Transaction();
-        self.state = 'index';
-
-        $.get('./appData.json').done(function (data) {
-            self.transaction.set(data);
-        });
-
-        $.get('./itemData.json').done(function (data) {
-            self.itemList.add(data, { merge: true });
-        });
-
-        self.wizardRouter = new BackboneWizard.Routers.WizardRouter();
-
-        Backbone.history.start();
-    }
+    Routers: {}
 };
 
-$(document).ready(function () {
-    'use strict';
-    BackboneWizard.init();
+var app = new Marionette.Application();
+
+app.addRegions({
+    wizard: '#wizard'
+});
+
+app.addInitializer(function () {
+    BackboneWizard.itemList = new BackboneWizard.Collections.ItemList();
+    BackboneWizard.transaction = new BackboneWizard.Models.Transaction();
+    BackboneWizard.state = 'index';
+
+    $.get('./appData.json').done(function (data) {
+        BackboneWizard.transaction.set(data);
+    });
+
+    $.get('./itemData.json').done(function (data) {
+        BackboneWizard.itemList.add(data, { merge: true });
+    });
+
+    BackboneWizard.wizardRouter = new BackboneWizard.Routers.WizardRouter();
+
+    Backbone.history.start();
 });
