@@ -27,7 +27,11 @@ app.addInitializer(function () {
         BackboneWizard.itemList.add(data, { merge: true });
     });
 
-    BackboneWizard.wizardRouter = new BackboneWizard.Routers.WizardRouter();
+    BackboneWizard.wizardController = new BackboneWizard.Controllers.WizardController();
+
+    BackboneWizard.wizardRouter = new BackboneWizard.Routers.WizardRouter({
+        controller: BackboneWizard.wizardController
+    });
 
     Backbone.history.start();
 });
