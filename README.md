@@ -6,6 +6,7 @@
 
 * Backbones.js
 * Backbone.js + Require.js
+* Marionette.js
 
 ## Get Started
 
