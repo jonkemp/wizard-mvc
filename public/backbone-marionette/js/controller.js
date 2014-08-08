@@ -1,11 +1,11 @@
-/*global BackboneWizard, app, $*/
+/*global BackboneWizard, app, Marionette, $*/
 
 BackboneWizard.Controllers = BackboneWizard.Controllers || {};
 
 (function () {
     'use strict';
 
-    BackboneWizard.Controllers.WizardController = {
+    BackboneWizard.Controllers.WizardController = Marionette.Controller.extend({
 
         index: function () {
             if (BackboneWizard.state !== 'success') {
@@ -79,5 +79,5 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
             }
         }
 
-    };
+    });
 })();
