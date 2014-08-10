@@ -1,11 +1,9 @@
-/*global BackboneWizard, Marionette*/
+/*global Marionette, app*/
+'use strict';
 
-BackboneWizard.Routers = BackboneWizard.Routers || {};
+app.module('Routers', function (Routers, app, Backbone, Marionette) {
 
-(function () {
-    'use strict';
-
-    BackboneWizard.Routers.WizardRouter = Marionette.AppRouter.extend({
+    this.WizardRouter = Marionette.AppRouter.extend({
         appRoutes: {
             '': 'index',
             'verify': 'showVerify',
@@ -14,4 +12,4 @@ BackboneWizard.Routers = BackboneWizard.Routers || {};
         }
     });
 
-})();
+});
