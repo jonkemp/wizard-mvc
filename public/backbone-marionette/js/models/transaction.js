@@ -1,11 +1,8 @@
-/*global BackboneWizard, Backbone*/
+/*global Backbone, app*/
+'use strict';
 
-BackboneWizard.Models = BackboneWizard.Models || {};
-
-(function () {
-    'use strict';
-
-    BackboneWizard.Models.Transaction = Backbone.Model.extend({
+app.module('Models', function (Models, app, Backbone) {
+    this.Transaction = Backbone.Model.extend({
 
         defaults: {
             'name': '',
@@ -23,5 +20,4 @@ BackboneWizard.Models = BackboneWizard.Models || {};
             'items': []
         }
     });
-
-})();
+});

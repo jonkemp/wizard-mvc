@@ -1,11 +1,8 @@
-/*global BackboneWizard, Backbone*/
+/*global Backbone, app*/
+'use strict';
 
-BackboneWizard.Models = BackboneWizard.Models || {};
-
-(function () {
-    'use strict';
-
-    BackboneWizard.Models.Item = Backbone.Model.extend({
+app.module('Models', function (Models, app, Backbone) {
+    this.Item = Backbone.Model.extend({
 
         defaults: {
             'name': '',
@@ -14,5 +11,4 @@ BackboneWizard.Models = BackboneWizard.Models || {};
             'price': ''
         }
     });
-
-})();
+});
