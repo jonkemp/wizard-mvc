@@ -1,12 +1,6 @@
 /* global BackboneWizard, Marionette, Backbone, $ */
 
-window.BackboneWizard = {
-    Models: {},
-    Collections: {},
-    Views: {},
-    Controllers: {},
-    Routers: {}
-};
+window.BackboneWizard = {};
 
 var app = new Marionette.Application();
 
@@ -15,8 +9,8 @@ app.addRegions({
 });
 
 app.addInitializer(function () {
-    BackboneWizard.itemList = new BackboneWizard.Collections.ItemList();
-    BackboneWizard.transaction = new BackboneWizard.Models.Transaction();
+    BackboneWizard.itemList = new app.Collections.ItemList();
+    BackboneWizard.transaction = new app.Models.Transaction();
     BackboneWizard.state = 'index';
 
     $.get('./appData.json').done(function (data) {
@@ -27,9 +21,9 @@ app.addInitializer(function () {
         BackboneWizard.itemList.add(data, { merge: true });
     });
 
-    BackboneWizard.wizardController = new BackboneWizard.Controllers.WizardController();
+    BackboneWizard.wizardController = new app.Controllers.WizardController();
 
-    BackboneWizard.wizardRouter = new BackboneWizard.Routers.WizardRouter({
+    BackboneWizard.wizardRouter = new app.Routers.WizardRouter({
         controller: BackboneWizard.wizardController
     });
 
