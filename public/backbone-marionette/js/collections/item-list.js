@@ -1,14 +1,10 @@
-/*global BackboneWizard, Backbone*/
+/*global Backbone, app*/
+'use strict';
 
-BackboneWizard.Collections = BackboneWizard.Collections || {};
+app.module('Collections', function (Collections, app, Backbone) {
+    this.ItemList = Backbone.Collection.extend({
 
-(function () {
-    'use strict';
-
-    BackboneWizard.Collections.ItemList = Backbone.Collection.extend({
-
-        model: BackboneWizard.Models.Item
+        model: app.Models.Item
 
     });
-
-})();
+});
