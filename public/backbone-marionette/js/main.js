@@ -9,6 +9,8 @@ app.addRegions({
 });
 
 app.addInitializer(function () {
+    var wizardController = new app.Controllers.WizardController();
+
     BackboneWizard.itemList = new app.Collections.ItemList();
     BackboneWizard.transaction = new app.Models.Transaction();
     BackboneWizard.state = 'index';
@@ -21,10 +23,8 @@ app.addInitializer(function () {
         BackboneWizard.itemList.add(data, { merge: true });
     });
 
-    BackboneWizard.wizardController = new app.Controllers.WizardController();
-
     BackboneWizard.wizardRouter = new app.Routers.WizardRouter({
-        controller: BackboneWizard.wizardController
+        controller: wizardController
     });
 
     Backbone.history.start();
