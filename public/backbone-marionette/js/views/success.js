@@ -1,11 +1,9 @@
-/*global BackboneWizard, Marionette, Backbone, _, $*/
+/*global Marionette, app*/
+'use strict';
 
-BackboneWizard.Views = BackboneWizard.Views || {};
+app.module('Views', function (Views, app, Backbone, Marionette) {
 
-(function () {
-    'use strict';
-
-    BackboneWizard.Views.SuccessView = Marionette.ItemView.extend({
+    this.SuccessView = Marionette.ItemView.extend({
 
         template: '#success-template',
 
@@ -13,4 +11,4 @@ BackboneWizard.Views = BackboneWizard.Views || {};
 
     });
 
-})();
+});

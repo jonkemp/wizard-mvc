@@ -1,11 +1,9 @@
-/*global BackboneWizard, Backbone, Marionette, _, $*/
+/*global app, Marionette*/
+'use strict';
 
-BackboneWizard.Views = BackboneWizard.Views || {};
+app.module('Views', function (Views, app, Backbone, Marionette) {
 
-(function () {
-    'use strict';
-
-    BackboneWizard.Views.ItemView = Marionette.ItemView.extend({
+    this.ItemView = Marionette.ItemView.extend({
 
         tagName: 'tr',
 
@@ -13,4 +11,4 @@ BackboneWizard.Views = BackboneWizard.Views || {};
 
     });
 
-})();
+});

@@ -1,11 +1,9 @@
-/*global BackboneWizard, Marionette, Backbone, _, $*/
+/*global BackboneWizard, Marionette, _, app*/
+'use strict';
 
-BackboneWizard.Views = BackboneWizard.Views || {};
+app.module('Views', function (Views, app, Backbone, Marionette, $, _, BackboneWizard) {
 
-(function () {
-    'use strict';
-
-    BackboneWizard.Views.PaymentView = Marionette.ItemView.extend({
+    this.PaymentView = Marionette.ItemView.extend({
 
         template: '#payment-template',
 
@@ -154,4 +152,4 @@ BackboneWizard.Views = BackboneWizard.Views || {};
 
     });
 
-})();
+}, BackboneWizard);

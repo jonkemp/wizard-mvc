@@ -1,11 +1,8 @@
-/*global BackboneWizard, Marionette, Backbone, _, $*/
+/*global BackboneWizard, Marionette, _, app*/
+'use strict';
 
-BackboneWizard.Views = BackboneWizard.Views || {};
-
-(function () {
-    'use strict';
-
-    BackboneWizard.Views.CustomerView = Marionette.ItemView.extend({
+app.module('Views', function (Views, app, Backbone, Marionette, $, _, BackboneWizard) {
+    this.CustomerView = Marionette.ItemView.extend({
 
         template: '#customer-template',
 
@@ -192,4 +189,4 @@ BackboneWizard.Views = BackboneWizard.Views || {};
 
     });
 
-})();
+}, BackboneWizard);

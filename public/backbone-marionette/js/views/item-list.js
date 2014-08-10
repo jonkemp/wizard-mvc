@@ -1,15 +1,13 @@
-/*global BackboneWizard, Backbone, Marionette, _, $*/
+/*global BackboneWizard, app, Marionette*/
+'use strict';
 
-BackboneWizard.Views = BackboneWizard.Views || {};
+app.module('Views', function (Views, app, Backbone, Marionette, $, _, BackboneWizard) {
 
-(function () {
-    'use strict';
-
-    BackboneWizard.Views.ListView = Marionette.CompositeView.extend({
+    this.ListView = Marionette.CompositeView.extend({
 
         template: '#item-list-template',
 
-        childView: BackboneWizard.Views.ItemView,
+        childView: app.Views.ItemView,
 
         childViewContainer: '#item-list',
 
@@ -30,4 +28,4 @@ BackboneWizard.Views = BackboneWizard.Views || {};
 
     });
 
-})();
+}, BackboneWizard);
