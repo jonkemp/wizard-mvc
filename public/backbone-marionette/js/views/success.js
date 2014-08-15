@@ -5,7 +5,7 @@ app.module('Views', function (Views, app, Backbone, Marionette) {
 
     this.SuccessView = Marionette.ItemView.extend({
 
-        template: '#success-template',
+        template: 'success',
 
         className: 'row'
 

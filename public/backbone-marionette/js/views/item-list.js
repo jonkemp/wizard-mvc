@@ -5,7 +5,7 @@ app.module('Views', function (Views, app, Backbone, Marionette, $, _, BackboneWi
 
     this.ListView = Marionette.CompositeView.extend({
 
-        template: '#item-list-template',
+        template: 'item-list',
 
         childView: app.Views.ItemView,
 

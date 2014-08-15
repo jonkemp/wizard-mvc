@@ -7,7 +7,7 @@ app.module('Views', function (Views, app, Backbone, Marionette) {
 
         tagName: 'tr',
 
-        template: '#item-template'
+        template: 'item'
 
     });
 

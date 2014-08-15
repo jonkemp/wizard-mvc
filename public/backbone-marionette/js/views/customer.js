@@ -4,7 +4,7 @@
 app.module('Views', function (Views, app, Backbone, Marionette, $, _, BackboneWizard) {
     this.CustomerView = Marionette.ItemView.extend({
 
-        template: '#customer-template',
+        template: 'customer',
 
         className: 'row',
 

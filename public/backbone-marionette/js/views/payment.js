@@ -5,7 +5,7 @@ app.module('Views', function (Views, app, Backbone, Marionette, $, _, BackboneWi
 
     this.PaymentView = Marionette.ItemView.extend({
 
-        template: '#payment-template',
+        template: 'payment',
 
         className: 'row',
 
