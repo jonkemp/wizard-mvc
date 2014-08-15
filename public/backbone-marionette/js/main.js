@@ -27,5 +27,5 @@ app.addInitializer(function () {
         controller: wizardController
     });
 
-    Backbone.history.start();
+    Backbone.history.start({ root: '/backbone-marionette/' });
 });
