@@ -10,11 +10,23 @@ app.module('Controllers', function (Controllers, app, Backbone, Marionette, $, _
 
                 BackboneWizard.wizardRouter.navigate('#/');
 
+                var _this = this;
+
                 var itemView = new app.Views.ListView({ model: BackboneWizard.transaction, collection: BackboneWizard.itemList });
 
-                itemView.on('wizard:verify', this.showVerify, this);
+                itemView.on('wizard:verify', _this.showVerify, _this);
 
-                app.wizard.show(itemView);
+                $.when(
+                    _this.templateManager.template('item-list'),
+                    _this.templateManager.template('item')
+                ).done(function () {
+                    app.wizard.show(itemView);
+
+                    // Pre-load remaining templates
+                    _this.templateManager.template('customer');
+                    _this.templateManager.template('payment');
+                    _this.templateManager.template('success');
+                });
             } else {
                 this.showSuccess();
             }
@@ -30,7 +42,11 @@ app.module('Controllers', function (Controllers, app, Backbone, Marionette, $, _
                 customerView.on('wizard:payment', this.showPayment, this);
                 customerView.on('wizard:index', this.index, this);
 
-                app.wizard.show(customerView);
+                $.when(
+                    this.templateManager.template('customer')
+                ).done(function () {
+                    app.wizard.show(customerView);
+                });
             } else {
                 this.showSuccess();
             }
@@ -46,7 +62,11 @@ app.module('Controllers', function (Controllers, app, Backbone, Marionette, $, _
                 paymentView.on('wizard:success', this.showSuccess, this);
                 paymentView.on('wizard:verify', this.showVerify, this);
 
-                app.wizard.show(paymentView);
+                $.when(
+                    this.templateManager.template('payment')
+                ).done(function () {
+                    app.wizard.show(paymentView);
+                });
             } else {
                 this.showSuccess();
             }
@@ -61,7 +81,11 @@ app.module('Controllers', function (Controllers, app, Backbone, Marionette, $, _
 
                 var successView = new app.Views.SuccessView({ model: BackboneWizard.transaction });
 
-                app.wizard.show(successView);
+                $.when(
+                    this.templateManager.template('success')
+                ).done(function () {
+                    app.wizard.show(successView);
+                });
             }
 
             if (BackboneWizard.state === 'index') {
@@ -75,7 +99,9 @@ app.module('Controllers', function (Controllers, app, Backbone, Marionette, $, _
             if (BackboneWizard.state === 'payment') {
                 this.showPayment();
             }
-        }
+        },
+
+        templateManager: new Marionette.TemplateManager()
 
     });
 }, BackboneWizard);
