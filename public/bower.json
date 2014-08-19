@@ -8,7 +8,12 @@
     "foundation": "~5.3.3",
     "requirejs": "~2.1.14",
     "requirejs-text": "~2.0.12",
-    "backbone.marionette": "~2.1.0"
+    "backbone.marionette": "~2.1.0",
+    "ember": "~1.6.1",
+    "ember-data": "~0.0.14"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "resolutions": {
+    "ember": "~1.6.1"
+  }
 }
