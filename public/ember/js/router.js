@@ -11,6 +11,12 @@ Wizard.Router.map(function () {
     });
 });
 
+Wizard.IndexRoute = Ember.Route.extend({
+    beforeModel: function () {
+        this.transitionTo('transaction.index', 1);
+    }
+});
+
 Wizard.TransactionIndexRoute = Ember.Route.extend({
     beforeModel: function () {
         if (Wizard.State.get('state') === 'success') {
