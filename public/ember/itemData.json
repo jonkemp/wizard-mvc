@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Red Widget",
+        "description": "Standard widget with a red exterior",
+        "quantity": "1",
+        "price": "19.99",
+        "transaction": 1
+    },
+    {
+        "id": 2,
+        "name": "Blue Widget",
+        "description": "Standard widget with a blue exterior",
+        "quantity": "1",
+        "price": "19.99",
+        "transaction": 1
+    },
+    {
+        "id": 3,
+        "name": "Widget Pro",
+        "description": "Deluxe version of the standard widget",
+        "quantity": "1",
+        "price": "29.99",
+        "transaction": 1
+    }
+]
