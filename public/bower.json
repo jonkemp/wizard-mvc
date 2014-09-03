@@ -10,7 +10,9 @@
     "requirejs-text": "~2.0.12",
     "backbone.marionette": "~2.1.0",
     "ember": "~1.6.1",
-    "ember-data": "~1.0.0"
+    "ember-data": "~1.0.0",
+    "angular": "~1.2.23",
+    "angular-route": "~1.2.23"
   },
   "devDependencies": {},
   "resolutions": {
