@@ -12,7 +12,8 @@
     "ember": "~1.6.1",
     "ember-data": "~1.0.0",
     "angular": "~1.2.23",
-    "angular-route": "~1.2.23"
+    "angular-route": "~1.2.23",
+    "angular-resource": "~1.2.23"
   },
   "devDependencies": {},
   "resolutions": {
