@@ -1,0 +1,75 @@
+    <div class="row">
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="#">Payment Info</a></h1>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="row" style="margin-bottom: 1em">
+        <ul class="tabs">
+            <li class="tab-title"><a href="#/transaction/{{ params.transactionId }}">Shopping Cart</a></li>
+            <li class="tab-title"><a href="#/transaction/{{ params.transactionId }}/customer/{{ params.customerId }}">Customer Info</a></li>
+            <li class="tab-title active"><a href="#/transaction/{{ params.transactionId }}/customer/{{ params.customerId }}/payment">Payment Info</a></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="panel">
+            <h1>Payment Details</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <form name="customerPayment" novalidate>
+            <div class="row">
+                <div class="large-4 columns">
+                    <label ng-class="{ 'error': customerPayment.ccName.$invalid && customerPayment.ccName.$dirty }">Name on Card
+                        <input id="cc-name" name="ccName" type="text" ng-model="customer.ccName" required>
+                    </label>
+                    <small class="error" ng-show="customerPayment.ccName.$invalid">Invalid entry</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-4 columns">
+                    <label ng-class="{ 'error': customerPayment.ccType.$invalid && customerPayment.ccType.$dirty }">Type
+                        <select name="ccType" ng-model="ccType" ng-options="provider.name for provider in ccProviders track by provider.value" required>
+                            <option value="">Select</option>
+                        </select>
+                    </label>
+                    <small class="error" ng-show="customerPayment.ccType.$invalid">Invalid entry</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-4 columns">
+                    <label ng-class="{ 'error': customerPayment.ccNumber.$invalid && customerPayment.ccNumber.$dirty }">Number
+                        <input id="cc-number" name="ccNumber" type="text" ng-model="customer.ccNumber" required>
+                    </label>
+                    <small class="error" ng-show="customerPayment.ccNumber.$invalid">Invalid entry</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-4 columns">
+                    <label ng-class="{ 'error': customerPayment.ccExpDate.$invalid && customerPayment.ccExpDate.$dirty }">Expiration Date
+                        <input id="cc-exp-date" name="ccExpDate" type="text" ng-model="customer.ccExpDate" required>
+                    </label>
+                    <small class="error" ng-show="customerPayment.ccExpDate.$invalid">Invalid entry</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-4 columns">
+                    <label ng-class="{ 'error': customerPayment.ccSecurityCode.$invalid && customerPayment.ccSecurityCode.$dirty }">Security Code
+                        <input id="cc-security-code" name="ccSecurityCode" type="text" ng-model="customer.ccSecurityCode" required>
+                    </label>
+                    <small class="error" ng-show="customerPayment.ccSecurityCode.$invalid">Invalid entry</small>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <a href="" id="next" class="button right" ng-click="nextStep()">Next</a>
+        <a href="" id="back" class="button secondary left" ng-click="previousStep()">Back</a>
+    </div>
