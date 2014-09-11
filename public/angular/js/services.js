@@ -3,17 +3,23 @@ var wizardServices = angular.module('wizardServices', ['ngResource']);
 
 wizardServices.factory('Transaction', ['$resource',
     function ($resource) {
-        return $resource('transactionData.json');
+        return $resource('transactionData.json', null, {
+            'query':  { method: 'GET', isArray: true, cache: true }
+        });
     }]);
 
 wizardServices.factory('Item', ['$resource',
     function ($resource) {
-        return $resource('itemData.json');
+        return $resource('itemData.json', null, {
+            'query':  { method: 'GET', isArray: true, cache: true }
+        });
     }]);
 
 wizardServices.factory('Customer', ['$resource',
     function ($resource) {
-        return $resource('appData.json');
+        return $resource('appData.json', null, {
+            'query':  { method: 'GET', isArray: true, cache: true }
+        });
     }]);
 
 wizardServices.factory('State', function () {
