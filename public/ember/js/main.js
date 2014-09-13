@@ -14,8 +14,21 @@ Wizard.ApplicationAdapter = DS.FixtureAdapter.extend();
 Wizard.initializer({
     name: 'runtimeSideloading',
 
-    initialize: function( container, app ) {
+    initialize: function( container, application ) {
+
+        application.deferReadiness();
+
         Wizard.State.set('state', 'index');
+
+        $.get('./transactionData.json').done(function (data) {
+            var store = container.lookup('store:main');
+
+            for(var i = 0; i < data.length; i++) {
+                store.push('transaction', data[i]);
+            }
+
+            application.advanceReadiness();
+        });
 
         $.get('./appData.json').done(function (data) {
             var store = container.lookup('store:main');
