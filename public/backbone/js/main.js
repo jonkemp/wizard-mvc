@@ -1,4 +1,4 @@
-/* global BackboneWizard, TemplateManager, Backbone, $ */
+/* global Wizard, TemplateManager, Backbone, $ */
 
 // Add close method
 Backbone.View.prototype.close = function () {
@@ -6,7 +6,7 @@ Backbone.View.prototype.close = function () {
     this.off();
 };
 
-window.BackboneWizard = {
+window.Wizard = {
     Models: {},
     Collections: {},
     Views: {},
@@ -23,8 +23,8 @@ window.BackboneWizard = {
         self.templateManager.template('js/templates/payment.html');
         self.templateManager.template('js/templates/success.html');
 
-        self.itemList = new BackboneWizard.Collections.ItemList();
-        self.transaction = new BackboneWizard.Models.Transaction();
+        self.itemList = new Wizard.Collections.ItemList();
+        self.transaction = new Wizard.Models.Transaction();
         self.state = 'index';
 
         $.get('./appData.json').done(function (data) {
@@ -35,7 +35,7 @@ window.BackboneWizard = {
             self.itemList.add(data, { merge: true });
         });
 
-        self.wizardRouter = new BackboneWizard.Routers.WizardRouter();
+        self.wizardRouter = new Wizard.Routers.WizardRouter();
 
         Backbone.history.start({ root: '/backbone/' });
     }
@@ -43,5 +43,5 @@ window.BackboneWizard = {
 
 $(document).ready(function () {
     'use strict';
-    BackboneWizard.init();
+    Wizard.init();
 });

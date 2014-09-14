@@ -1,11 +1,11 @@
-/*global BackboneWizard, TemplateManager, Backbone, _, $*/
+/*global Wizard, TemplateManager, Backbone, _, $*/
 
-BackboneWizard.Views = BackboneWizard.Views || {};
+Wizard.Views = Wizard.Views || {};
 
 (function () {
     'use strict';
 
-    BackboneWizard.Views.SuccessView = Backbone.View.extend({
+    Wizard.Views.SuccessView = Backbone.View.extend({
 
         template: 'js/templates/success.html',
 
@@ -14,7 +14,7 @@ BackboneWizard.Views = BackboneWizard.Views || {};
         render: function () {
             var view = this;
 
-            BackboneWizard.templateManager.template( view.template )
+            Wizard.templateManager.template( view.template )
                 .done(function (content) {
                     view.$el.html( content( view.model.attributes ) );
                 });

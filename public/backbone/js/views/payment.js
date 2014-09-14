@@ -1,11 +1,11 @@
-/*global BackboneWizard, TemplateManager, Backbone, _, $*/
+/*global Wizard, TemplateManager, Backbone, _, $*/
 
-BackboneWizard.Views = BackboneWizard.Views || {};
+Wizard.Views = Wizard.Views || {};
 
 (function () {
     'use strict';
 
-    BackboneWizard.Views.PaymentView = Backbone.View.extend({
+    Wizard.Views.PaymentView = Backbone.View.extend({
 
         template: 'js/templates/payment.html',
 
@@ -39,7 +39,7 @@ BackboneWizard.Views = BackboneWizard.Views || {};
         render: function () {
             var view = this;
 
-            BackboneWizard.templateManager.template( view.template )
+            Wizard.templateManager.template( view.template )
                 .done(function (content) {
                     view.$el.html( content( view.model.attributes ) );
                     view.stickit();
@@ -52,7 +52,7 @@ BackboneWizard.Views = BackboneWizard.Views || {};
             event.preventDefault();
 
             if (this.validate()) {
-                BackboneWizard.state = 'success';
+                Wizard.state = 'success';
                 this.trigger('wizard:success');
             }
         },
@@ -60,7 +60,7 @@ BackboneWizard.Views = BackboneWizard.Views || {};
         previousStep: function (event) {
             event.preventDefault();
 
-            BackboneWizard.state = 'verify';
+            Wizard.state = 'verify';
             this.trigger('wizard:verify');
         },
 

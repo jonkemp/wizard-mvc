@@ -1,13 +1,13 @@
-/*global BackboneWizard, Backbone*/
+/*global Wizard, Backbone*/
 
-BackboneWizard.Collections = BackboneWizard.Collections || {};
+Wizard.Collections = Wizard.Collections || {};
 
 (function () {
     'use strict';
 
-    BackboneWizard.Collections.ItemList = Backbone.Collection.extend({
+    Wizard.Collections.ItemList = Backbone.Collection.extend({
 
-        model: BackboneWizard.Models.Item
+        model: Wizard.Models.Item
 
     });
 

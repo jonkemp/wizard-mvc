@@ -1,11 +1,11 @@
-/*global BackboneWizard, Backbone*/
+/*global Wizard, Backbone*/
 
-BackboneWizard.Routers = BackboneWizard.Routers || {};
+Wizard.Routers = Wizard.Routers || {};
 
 (function () {
     'use strict';
 
-    BackboneWizard.Routers.WizardRouter = Backbone.Router.extend({
+    Wizard.Routers.WizardRouter = Backbone.Router.extend({
         routes: {
             '': 'index',
             'verify': 'showVerify',
@@ -14,19 +14,19 @@ BackboneWizard.Routers = BackboneWizard.Routers || {};
         },
 
         index: function () {
-            BackboneWizard.Controllers.WizardController.index();
+            Wizard.Controllers.WizardController.index();
         },
 
         showVerify: function () {
-            BackboneWizard.Controllers.WizardController.showVerify();
+            Wizard.Controllers.WizardController.showVerify();
         },
 
         showPayment: function () {
-            BackboneWizard.Controllers.WizardController.showPayment();
+            Wizard.Controllers.WizardController.showPayment();
         },
 
         showSuccess: function () {
-            BackboneWizard.Controllers.WizardController.showSuccess();
+            Wizard.Controllers.WizardController.showSuccess();
         }
     });
 

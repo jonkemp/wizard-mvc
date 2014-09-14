@@ -1,21 +1,21 @@
-/*global $, BackboneWizard*/
+/*global $, Wizard*/
 
-BackboneWizard.Controllers = BackboneWizard.Controllers || {};
+Wizard.Controllers = Wizard.Controllers || {};
 
 (function () {
     'use strict';
 
-    BackboneWizard.Controllers.WizardController = {
+    Wizard.Controllers.WizardController = {
 
         index: function () {
-            if (BackboneWizard.state !== 'success') {
+            if (Wizard.state !== 'success') {
                 if (this.currentView) {
                     this.currentView.close();
                 }
 
-                BackboneWizard.wizardRouter.navigate('#/');
+                Wizard.wizardRouter.navigate('#/');
 
-                this.itemView = this.currentView = new BackboneWizard.Views.ItemView({ model: BackboneWizard.transaction, collection: BackboneWizard.itemList });
+                this.itemView = this.currentView = new Wizard.Views.ItemView({ model: Wizard.transaction, collection: Wizard.itemList });
 
                 this.itemView.on('wizard:verify', this.showVerify, this);
 
@@ -26,14 +26,14 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
         },
 
         showVerify: function () {
-            if (BackboneWizard.state !== 'success') {
+            if (Wizard.state !== 'success') {
                 if (this.currentView) {
                     this.currentView.close();
                 }
 
-                BackboneWizard.wizardRouter.navigate('#/verify');
+                Wizard.wizardRouter.navigate('#/verify');
 
-                this.customerView = this.currentView = new BackboneWizard.Views.CustomerView({ model: BackboneWizard.transaction });
+                this.customerView = this.currentView = new Wizard.Views.CustomerView({ model: Wizard.transaction });
 
                 this.customerView.on('wizard:payment', this.showPayment, this);
                 this.customerView.on('wizard:index', this.index, this);
@@ -45,14 +45,14 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
         },
 
         showPayment: function () {
-            if (BackboneWizard.state !== 'success') {
+            if (Wizard.state !== 'success') {
                 if (this.currentView) {
                     this.currentView.close();
                 }
 
-                BackboneWizard.wizardRouter.navigate('#/payment');
+                Wizard.wizardRouter.navigate('#/payment');
 
-                this.paymentView = this.currentView = new BackboneWizard.Views.PaymentView({ model: BackboneWizard.transaction });
+                this.paymentView = this.currentView = new Wizard.Views.PaymentView({ model: Wizard.transaction });
 
                 this.paymentView.on('wizard:success', this.showSuccess, this);
                 this.paymentView.on('wizard:verify', this.showVerify, this);
@@ -64,14 +64,14 @@ BackboneWizard.Controllers = BackboneWizard.Controllers || {};
         },
 
         showSuccess: function () {
-            var state = BackboneWizard.state;
+            var state = Wizard.state;
 
             if (state === 'success') {
                 this.currentView.close();
 
-                BackboneWizard.wizardRouter.navigate('#/success');
+                Wizard.wizardRouter.navigate('#/success');
 
-                this.successView = this.currentView = new BackboneWizard.Views.SuccessView({ model: BackboneWizard.transaction });
+                this.successView = this.currentView = new Wizard.Views.SuccessView({ model: Wizard.transaction });
                 $('#wizard').html(this.successView.render().el);
             }
 

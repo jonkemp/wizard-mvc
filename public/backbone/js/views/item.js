@@ -1,11 +1,11 @@
-/*global BackboneWizard, TemplateManager, Backbone, _, $*/
+/*global Wizard, TemplateManager, Backbone, _, $*/
 
-BackboneWizard.Views = BackboneWizard.Views || {};
+Wizard.Views = Wizard.Views || {};
 
 (function () {
     'use strict';
 
-    BackboneWizard.Views.ItemView = Backbone.View.extend({
+    Wizard.Views.ItemView = Backbone.View.extend({
 
         template: 'js/templates/item.html',
 
@@ -22,7 +22,7 @@ BackboneWizard.Views = BackboneWizard.Views || {};
         render: function () {
             var view = this;
 
-            BackboneWizard.templateManager.template( view.template )
+            Wizard.templateManager.template( view.template )
                 .done(function (content) {
                     view.$el.html( content({ items: view.collection.toJSON() }) );
                 });
@@ -35,7 +35,7 @@ BackboneWizard.Views = BackboneWizard.Views || {};
 
             this.model.set({ items: this.collection.toJSON() });
 
-            BackboneWizard.state = 'verify';
+            Wizard.state = 'verify';
             this.trigger('wizard:verify');
         }
 

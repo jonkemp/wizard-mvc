@@ -1,11 +1,11 @@
-/*global BackboneWizard, Backbone*/
+/*global Wizard, Backbone*/
 
-BackboneWizard.Models = BackboneWizard.Models || {};
+Wizard.Models = Wizard.Models || {};
 
 (function () {
     'use strict';
 
-    BackboneWizard.Models.Transaction = Backbone.Model.extend({
+    Wizard.Models.Transaction = Backbone.Model.extend({
 
         defaults: {
             'name': '',
