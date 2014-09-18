@@ -1,4 +1,4 @@
-/* global Wizard, TemplateManager, Backbone, $ */
+/* global Wizard, TemplateManager, Backbone, _, $ */
 
 // Add close method
 Backbone.View.prototype.close = function () {
@@ -15,33 +15,26 @@ window.Wizard = {
     init: function () {
         'use strict';
 
-        var self = this;
+        var _this = this;
 
-        self.templateManager = new TemplateManager();
-        self.templateManager.template('js/templates/item.html');
-        self.templateManager.template('js/templates/customer.html');
-        self.templateManager.template('js/templates/payment.html');
-        self.templateManager.template('js/templates/success.html');
+        _this.templateManager = new TemplateManager();
+        _this.templateManager.template('js/templates/transaction.html');
+        _this.templateManager.template('js/templates/customer.html');
+        _this.templateManager.template('js/templates/payment.html');
+        _this.templateManager.template('js/templates/success.html');
 
-        self.itemList = new Wizard.Collections.ItemList();
-        self.transaction = new Wizard.Models.Transaction();
-        self.state = 'index';
+        _this.transactionList = new Wizard.Collections.TransactionList();
+        _this.transactionList.fetch().done(function () {
+            _this.state = 'index';
 
-        $.get('./appData.json').done(function (data) {
-            self.transaction.set(data);
+            _this.wizardRouter = new Wizard.Routers.WizardRouter();
+
+            Backbone.history.start({ root: '/backbone/' });
         });
-
-        $.get('./itemData.json').done(function (data) {
-            self.itemList.add(data, { merge: true });
-        });
-
-        self.wizardRouter = new Wizard.Routers.WizardRouter();
-
-        Backbone.history.start({ root: '/backbone/' });
     }
 };
 
-$(document).ready(function () {
+$(function () {
     'use strict';
     Wizard.init();
 });

@@ -5,9 +5,9 @@ Wizard.Views = Wizard.Views || {};
 (function () {
     'use strict';
 
-    Wizard.Views.ItemView = Backbone.View.extend({
+    Wizard.Views.TransactionView = Backbone.View.extend({
 
-        template: 'js/templates/item.html',
+        template: 'js/templates/transaction.html',
 
         className: 'row',
 
@@ -24,7 +24,11 @@ Wizard.Views = Wizard.Views || {};
 
             Wizard.templateManager.template( view.template )
                 .done(function (content) {
-                    view.$el.html( content({ items: view.collection.toJSON() }) );
+                    view.$el.html( content({
+                        items: view.collection.toJSON(),
+                        transaction_id: view.model.get('id'),
+                        customer_id: view.model.get('customer')
+                    }) );
                 });
 
             return this;
@@ -32,8 +36,6 @@ Wizard.Views = Wizard.Views || {};
 
         nextStep: function (event) {
             event.preventDefault();
-
-            this.model.set({ items: this.collection.toJSON() });
 
             Wizard.state = 'verify';
             this.trigger('wizard:verify');

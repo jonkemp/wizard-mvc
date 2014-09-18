@@ -1,4 +1,4 @@
-/*global $, Wizard*/
+/*global $, _, Backbone, Wizard*/
 
 Wizard.Controllers = Wizard.Controllers || {};
 
@@ -8,83 +8,155 @@ Wizard.Controllers = Wizard.Controllers || {};
     Wizard.Controllers.WizardController = {
 
         index: function () {
+            this.transaction(1);
+        },
+
+        transaction: function (transaction_id) {
             if (Wizard.state !== 'success') {
-                if (this.currentView) {
-                    this.currentView.close();
+                var controller = this,
+                    itemList,
+                    transaction = Wizard.transactionList.findWhere({ id: Number( transaction_id ) }),
+                    customer_id = transaction.get('customer');
+
+                if (controller.currentView) {
+                    controller.currentView.close();
                 }
 
-                Wizard.wizardRouter.navigate('#/');
+                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id);
 
-                this.itemView = this.currentView = new Wizard.Views.ItemView({ model: Wizard.transaction, collection: Wizard.itemList });
+                itemList = new Wizard.Collections.ItemList();
 
-                this.itemView.on('wizard:verify', this.showVerify, this);
+                itemList.fetch().done(function (response) {
+                    var data = _.where(response, { transaction: Number( transaction_id ) });
 
-                $('#wizard').html(this.itemView.render().el);
+                    var transactionView = controller.currentView = new Wizard.Views.TransactionView({
+                        model: transaction,
+                        collection: new Wizard.Collections.ItemList( data )
+                    });
+
+                    transactionView.on('wizard:verify', function () {
+                        this.customer(transaction_id, customer_id);
+                    }, controller);
+
+                    $('#wizard').html( transactionView.render().el );
+                });
             } else {
-                this.showSuccess();
+                this.success(transaction_id);
             }
         },
 
-        showVerify: function () {
+        customer: function (transaction_id, customer_id) {
             if (Wizard.state !== 'success') {
-                if (this.currentView) {
-                    this.currentView.close();
+                var controller = this,
+                    customerList;
+
+                if (controller.currentView) {
+                    controller.currentView.close();
                 }
 
-                Wizard.wizardRouter.navigate('#/verify');
+                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/customer/' + customer_id);
 
-                this.customerView = this.currentView = new Wizard.Views.CustomerView({ model: Wizard.transaction });
+                customerList = new Wizard.Collections.CustomerList();
 
-                this.customerView.on('wizard:payment', this.showPayment, this);
-                this.customerView.on('wizard:index', this.index, this);
+                customerList.fetch().done(function (response) {
+                    var data = _.findWhere(response, { id: Number( customer_id ) });
 
-                $('#wizard').html(this.customerView.render().el);
+                    var customerView = controller.currentView = new Wizard.Views.CustomerView({
+                        model: new Wizard.Models.Customer( _.extend(data, { 'transaction_id': transaction_id }) )
+                    });
+
+                    customerView.on('wizard:payment', function () {
+                        this.payment(transaction_id, customer_id);
+                    }, controller);
+
+                    customerView.on('wizard:transaction', function () {
+                        this.transaction(transaction_id);
+                    }, controller);
+
+                    $('#wizard').html( customerView.render().el );
+                });
             } else {
-                this.showSuccess();
+                this.success(transaction_id);
             }
         },
 
-        showPayment: function () {
+        payment: function (transaction_id, customer_id) {
             if (Wizard.state !== 'success') {
-                if (this.currentView) {
-                    this.currentView.close();
+                var controller = this,
+                    customerList;
+
+                if (controller.currentView) {
+                    controller.currentView.close();
                 }
 
-                Wizard.wizardRouter.navigate('#/payment');
+                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/customer/' + customer_id + '/payment');
 
-                this.paymentView = this.currentView = new Wizard.Views.PaymentView({ model: Wizard.transaction });
+                customerList = new Wizard.Collections.CustomerList();
 
-                this.paymentView.on('wizard:success', this.showSuccess, this);
-                this.paymentView.on('wizard:verify', this.showVerify, this);
+                customerList.fetch().done(function (response) {
+                    var data = _.findWhere(response, { id: Number( customer_id ) });
 
-                $('#wizard').html(this.paymentView.render().el);
+                    var paymentView = controller.currentView = new Wizard.Views.PaymentView({
+                        model: new Wizard.Models.Customer( _.extend(data, { 'transaction_id': transaction_id }) )
+                    });
+
+                    paymentView.on('wizard:success', function () {
+                        this.success( transaction_id );
+                    }, controller);
+
+                    paymentView.on('wizard:verify', function () {
+                        this.customer( transaction_id, customer_id );
+                    }, controller);
+
+                    $('#wizard').html( paymentView.render().el );
+                });
             } else {
-                this.showSuccess();
+                this.success(transaction_id);
             }
         },
 
-        showSuccess: function () {
-            var state = Wizard.state;
+        success: function (transaction_id) {
+            var controller = this,
+                state = Wizard.state,
+                itemList,
+                customerList,
+                transaction = Wizard.transactionList.findWhere({ id: Number( transaction_id ) }),
+                customer_id = transaction.get('customer');
 
             if (state === 'success') {
-                this.currentView.close();
+                controller.currentView.close();
 
-                Wizard.wizardRouter.navigate('#/success');
+                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/success');
 
-                this.successView = this.currentView = new Wizard.Views.SuccessView({ model: Wizard.transaction });
-                $('#wizard').html(this.successView.render().el);
+                itemList = new Wizard.Collections.ItemList();
+
+                itemList.fetch().done(function (response) {
+                    var items = _.where(response, { transaction: Number( transaction_id ) });
+
+                    customerList = new Wizard.Collections.CustomerList();
+
+                    customerList.fetch().done(function (response) {
+                        var customer = _.findWhere(response, { id: Number( customer_id ) });
+                        var successModel = new Backbone.Model({
+                            'items': items,
+                            'customer': customer
+                        });
+                        var successView = controller.currentView = new Wizard.Views.SuccessView({ model: successModel });
+                        $('#wizard').html( successView.render().el );
+                    });
+                });
             }
 
             if (state === 'index') {
-                this.index();
+                this.transaction(transaction_id);
             }
 
             if (state === 'verify') {
-                this.showVerify();
+                this.customer(transaction_id, customer_id);
             }
 
             if (state === 'payment') {
-                this.showPayment();
+                this.payment(transaction_id, customer_id);
             }
         }
 

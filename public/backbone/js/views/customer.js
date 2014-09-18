@@ -63,7 +63,7 @@ Wizard.Views = Wizard.Views || {};
             event.preventDefault();
 
             Wizard.state = 'index';
-            this.trigger('wizard:index');
+            this.trigger('wizard:transaction');
         },
 
         validate: function() {

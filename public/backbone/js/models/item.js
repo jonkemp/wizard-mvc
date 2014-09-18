@@ -11,7 +11,8 @@ Wizard.Models = Wizard.Models || {};
             'name': '',
             'description': '',
             'quantity': '',
-            'price': ''
+            'price': '',
+            'transaction': null
         }
     });
 

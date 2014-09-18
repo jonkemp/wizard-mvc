@@ -7,7 +7,9 @@ Wizard.Collections = Wizard.Collections || {};
 
     Wizard.Collections.ItemList = Backbone.Collection.extend({
 
-        model: Wizard.Models.Item
+        model: Wizard.Models.Item,
+
+        url: '/backbone/itemData.json'
 
     });
 
