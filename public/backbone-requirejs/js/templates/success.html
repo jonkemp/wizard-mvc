@@ -20,20 +20,20 @@
             <hr/>
 
             <h3>Customer Details</h3>
-            <p>Name: <%= name %><br/>
-                Address: <%= address %><br/>
-                City: <%= city %><br/>
-                State: <%= state %><br/>
-                Zip Code: <%= zipcode %><br/>
-                Email: <%= email %><br/>
-                Phone: <%= phone %></p>
+            <p>Name: <%= customer.name %><br/>
+                Address: <%= customer.address %><br/>
+                City: <%= customer.city %><br/>
+                State: <%= customer.state %><br/>
+                Zip Code: <%= customer.zipcode %><br/>
+                Email: <%= customer.email %><br/>
+                Phone: <%= customer.phone %></p>
 
             <hr/>
 
             <h3>Payment Details</h3>
-            <p>Name on Card: <%= ccName %><br/>
-                Type: <%= ccType %><br/>
-                Number: <%= ccNumber %><br/>
-                Expiration Date: <%= ccExpDate %></p>
+            <p>Name on Card: <%= customer.ccName %><br/>
+                Type: <%= customer.ccType %><br/>
+                Number: <%= customer.ccNumber %><br/>
+                Expiration Date: <%= customer.ccExpDate %></p>
         </div>
     </div>

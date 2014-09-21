@@ -8,7 +8,9 @@ define([
 
     var ItemList = Backbone.Collection.extend({
 
-        model: Item
+        model: Item,
+
+        url: '/backbone/itemData.json'
 
     });
 

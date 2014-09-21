@@ -9,25 +9,30 @@ define([
     var WizardRouter = Backbone.Router.extend({
         routes: {
             '': 'index',
-            'verify': 'showVerify',
-            'payment': 'showPayment',
-            'success': 'showSuccess'
+            'transaction/:transaction_id': 'transaction',
+            'transaction/:transaction_id/customer/:customer_id': 'customer',
+            'transaction/:transaction_id/customer/:customer_id/payment': 'payment',
+            'transaction/:transaction_id/success': 'success'
         },
 
         index: function () {
             wizardController.index();
         },
 
-        showVerify: function () {
-            wizardController.showVerify();
+        transaction: function (transaction_id) {
+            wizardController.transaction( transaction_id );
         },
 
-        showPayment: function () {
-            wizardController.showPayment();
+        customer: function (transaction_id, customer_id) {
+            wizardController.customer( transaction_id, customer_id );
         },
 
-        showSuccess: function () {
-            wizardController.showSuccess();
+        payment: function (transaction_id, customer_id) {
+            wizardController.payment( transaction_id, customer_id );
+        },
+
+        success: function (transaction_id) {
+            wizardController.success( transaction_id );
         }
     });
 

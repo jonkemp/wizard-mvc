@@ -14,11 +14,10 @@ require.config({
 require([
     'backbone',
     'jquery',
-    'collections/item-list',
-    'models/transaction',
+    'collections/transaction-list',
     'router',
     'app'
-], function (Backbone, $, ItemList, Transaction, WizardRouter, backboneWizard) {
+], function (Backbone, $, TransactionList, WizardRouter, Wizard) {
 
     // Add close method
     Backbone.View.prototype.close = function () {
@@ -26,19 +25,12 @@ require([
         this.off();
     };
 
-    backboneWizard.itemList = new ItemList();
-    backboneWizard.transaction = new Transaction();
-    backboneWizard.state = 'index';
+    Wizard.transactionList = new TransactionList();
+    Wizard.transactionList.fetch().done(function () {
+        Wizard.state = 'index';
 
-    $.get('./appData.json').done(function (data) {
-        backboneWizard.transaction.set(data);
+        Wizard.wizardRouter = new WizardRouter();
+
+        Backbone.history.start({ root: '/backbone-requirejs/' });
     });
-
-    $.get('./itemData.json').done(function (data) {
-        backboneWizard.itemList.add(data, { merge: true });
-    });
-
-    backboneWizard.wizardRouter = new WizardRouter();
-
-    Backbone.history.start({ root: '/backbone-requirejs/' });
 });

@@ -11,7 +11,8 @@ define([
             'name': '',
             'description': '',
             'quantity': '',
-            'price': ''
+            'price': '',
+            'transaction': null
         }
     });
 

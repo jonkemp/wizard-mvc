@@ -3,14 +3,14 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/item.html',
+    'text!templates/transaction.html',
     'app'
-], function ($, _, Backbone, itemTemplate, backboneWizard) {
+], function ($, _, Backbone, transactionTemplate, backboneWizard) {
     'use strict';
 
-    var ItemView = Backbone.View.extend({
+    var TransactionView = Backbone.View.extend({
 
-        template: _.template( itemTemplate ),
+        template: _.template( transactionTemplate ),
 
         className: 'row',
 
@@ -23,14 +23,16 @@ define([
         },
 
         render: function () {
-            this.$el.html(this.template({ items: this.collection.toJSON() }));
+            this.$el.html(this.template({
+                items: this.collection.toJSON(),
+                transaction_id: this.model.get('id'),
+                customer_id: this.model.get('customer')
+            }));
             return this;
         },
 
         nextStep: function (event) {
             event.preventDefault();
-
-            this.model.set({ items: this.collection.toJSON() });
 
             backboneWizard.state = 'verify';
             this.trigger('wizard:verify');
@@ -38,5 +40,5 @@ define([
 
     });
 
-    return ItemView;
+    return TransactionView;
 });

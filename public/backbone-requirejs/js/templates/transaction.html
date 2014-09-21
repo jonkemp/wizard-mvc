@@ -10,9 +10,9 @@
 
     <div class="row" style="margin-bottom: 1em">
         <ul class="tabs">
-            <li class="tab-title active"><a href="#/">Shopping Cart</a></li>
-            <li class="tab-title"><a href="#/verify">Customer Info</a></li>
-            <li class="tab-title"><a href="#/payment">Payment Info</a></li>
+            <li class="tab-title active"><a href="#/transaction/<%= transaction_id %>">Shopping Cart</a></li>
+            <li class="tab-title"><a href="#/transaction/<%= transaction_id %>/customer/<%= customer_id %>">Customer Info</a></li>
+            <li class="tab-title"><a href="#/transaction/<%= transaction_id %>/customer/<%= customer_id %>/payment">Payment Info</a></li>
         </ul>
     </div>
 

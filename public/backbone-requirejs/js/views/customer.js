@@ -61,7 +61,7 @@ define([
             event.preventDefault();
 
             backboneWizard.state = 'index';
-            this.trigger('wizard:index');
+            this.trigger('wizard:transaction');
         },
 
         validate: function() {
