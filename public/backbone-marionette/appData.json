@@ -1,15 +1,18 @@
-{
-    "name": "Jonathan Kemp",
-    "address": "6010 Shannon Valley Farms Blvd",
-    "city": "Knoxville",
-    "state": "TN",
-    "zipcode": "37918",
-    "email": "kempdogg@gmail.com",
-    "phone": "865-684-4316",
-    "ccName": "Jonathan E Kemp",
-    "ccType": "VISA",
-    "ccNumber": "1234567890000009",
-    "ccExpDate": "01/15",
-    "ccSecurityCode": "123",
-    "items": []
-}
+[
+    {
+        "id": 1,
+        "name": "Jonathan Kemp",
+        "address": "6010 Shannon Valley Farms Blvd",
+        "city": "Knoxville",
+        "state": "TN",
+        "zipcode": "37918",
+        "email": "kempdogg@gmail.com",
+        "phone": "865-684-4316",
+        "ccName": "Jonathan E Kemp",
+        "ccType": "VISA",
+        "ccNumber": "1234567890000009",
+        "ccExpDate": "01/15",
+        "ccSecurityCode": "123",
+        "transactions": [ 1 ]
+    }
+]

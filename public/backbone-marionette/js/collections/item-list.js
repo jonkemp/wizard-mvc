@@ -4,7 +4,9 @@
 app.module('Collections', function (Collections, app, Backbone) {
     this.ItemList = Backbone.Collection.extend({
 
-        model: app.Models.Item
+        model: app.Models.Item,
+
+        url: '/backbone-marionette/itemData.json'
 
     });
 });

@@ -8,7 +8,8 @@ app.module('Models', function (Models, app, Backbone) {
             'name': '',
             'description': '',
             'quantity': '',
-            'price': ''
+            'price': '',
+            'transaction': null
         }
     });
 });

@@ -1,7 +1,7 @@
-/*global BackboneWizard, Marionette, _, app*/
+/*global Wizard, Marionette, _, app*/
 'use strict';
 
-app.module('Views', function (Views, app, Backbone, Marionette, $, _, BackboneWizard) {
+app.module('Views', function (Views, app, Backbone, Marionette, $, _, Wizard) {
 
     this.PaymentView = Marionette.ItemView.extend({
 
@@ -42,7 +42,7 @@ app.module('Views', function (Views, app, Backbone, Marionette, $, _, BackboneWi
             event.preventDefault();
 
             if (this.validate()) {
-                BackboneWizard.state = 'success';
+                Wizard.state = 'success';
                 this.trigger('wizard:success');
             }
         },
@@ -50,7 +50,7 @@ app.module('Views', function (Views, app, Backbone, Marionette, $, _, BackboneWi
         previousStep: function (event) {
             event.preventDefault();
 
-            BackboneWizard.state = 'verify';
+            Wizard.state = 'verify';
             this.trigger('wizard:verify');
         },
 
@@ -152,4 +152,4 @@ app.module('Views', function (Views, app, Backbone, Marionette, $, _, BackboneWi
 
     });
 
-}, BackboneWizard);
+}, Wizard);

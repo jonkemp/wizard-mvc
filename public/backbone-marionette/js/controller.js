@@ -1,107 +1,173 @@
-/*global BackboneWizard, app, Marionette, $*/
+/*global Wizard, app, Marionette, $*/
 'use strict';
 
-app.module('Controllers', function (Controllers, app, Backbone, Marionette, $, _, BackboneWizard) {
+app.module('Controllers', function (Controllers, app, Backbone, Marionette, $, _, Wizard) {
 
     this.WizardController = Marionette.Controller.extend({
 
         index: function () {
-            if (BackboneWizard.state !== 'success') {
+            this.transaction(1);
+        },
 
-                BackboneWizard.wizardRouter.navigate('#/');
+        transaction: function (transaction_id) {
+            if (Wizard.state !== 'success') {
+                var controller = this,
+                    itemList,
+                    transaction = Wizard.transactionList.findWhere({ id: Number( transaction_id ) }),
+                    customer_id = transaction.get('customer');
 
-                var _this = this;
+                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id);
 
-                var itemView = new app.Views.ListView({ model: BackboneWizard.transaction, collection: BackboneWizard.itemList });
+                itemList = new app.Collections.ItemList();
 
-                itemView.on('wizard:verify', _this.showVerify, _this);
+                itemList.fetch().done(function (response) {
+                    var data = _.where(response, { transaction: Number( transaction_id ) });
 
-                $.when(
-                    _this.templateManager.template('item-list'),
-                    _this.templateManager.template('item')
-                ).done(function () {
-                    app.wizard.show(itemView);
+                    var transactionView = controller.currentView = new app.Views.TransactionView({
+                        model: transaction,
+                        collection: new app.Collections.ItemList( data )
+                    });
 
-                    // Pre-load remaining templates
-                    _this.templateManager.template('customer');
-                    _this.templateManager.template('payment');
-                    _this.templateManager.template('success');
+                    transactionView.on('wizard:verify', function () {
+                        this.customer(transaction_id, customer_id);
+                    }, controller);
+
+                    $.when(
+                        controller.templateManager.template('transaction'),
+                        controller.templateManager.template('item')
+                    ).done(function () {
+                        app.wizard.show(transactionView);
+
+                        // Pre-load remaining templates
+                        controller.templateManager.template('customer');
+                        controller.templateManager.template('payment');
+                        controller.templateManager.template('success');
+                    });
                 });
             } else {
-                this.showSuccess();
+                this.success(transaction_id);
             }
         },
 
-        showVerify: function () {
-            if (BackboneWizard.state !== 'success') {
+        customer: function (transaction_id, customer_id) {
+            if (Wizard.state !== 'success') {
+                var controller = this,
+                    customerList;
 
-                BackboneWizard.wizardRouter.navigate('#/verify');
+                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/customer/' + customer_id);
 
-                var customerView = new app.Views.CustomerView({ model: BackboneWizard.transaction });
+                customerList = new app.Collections.CustomerList();
 
-                customerView.on('wizard:payment', this.showPayment, this);
-                customerView.on('wizard:index', this.index, this);
+                customerList.fetch().done(function (response) {
+                    var data = _.findWhere(response, { id: Number( customer_id ) });
 
-                $.when(
-                    this.templateManager.template('customer')
-                ).done(function () {
-                    app.wizard.show(customerView);
+                    var customerView = controller.currentView = new app.Views.CustomerView({
+                        model: new app.Models.Customer( _.extend(data, { 'transaction_id': transaction_id }) )
+                    });
+
+                    customerView.on('wizard:payment', function () {
+                        this.payment(transaction_id, customer_id);
+                    }, controller);
+
+                    customerView.on('wizard:transaction', function () {
+                        this.transaction(transaction_id);
+                    }, controller);
+
+                    $.when(
+                        controller.templateManager.template('customer')
+                    ).done(function () {
+                        app.wizard.show(customerView);
+                    });
                 });
             } else {
-                this.showSuccess();
+                this.success(transaction_id);
             }
         },
 
-        showPayment: function () {
-            if (BackboneWizard.state !== 'success') {
+        payment: function (transaction_id, customer_id) {
+            if (Wizard.state !== 'success') {
+                var controller = this,
+                    customerList;
 
-                BackboneWizard.wizardRouter.navigate('#/payment');
+                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/customer/' + customer_id + '/payment');
 
-                var paymentView = new app.Views.PaymentView({ model: BackboneWizard.transaction });
+                customerList = new app.Collections.CustomerList();
 
-                paymentView.on('wizard:success', this.showSuccess, this);
-                paymentView.on('wizard:verify', this.showVerify, this);
+                customerList.fetch().done(function (response) {
+                    var data = _.findWhere(response, { id: Number( customer_id ) });
 
-                $.when(
-                    this.templateManager.template('payment')
-                ).done(function () {
-                    app.wizard.show(paymentView);
+                    var paymentView = controller.currentView = new app.Views.PaymentView({
+                        model: new app.Models.Customer( _.extend(data, { 'transaction_id': transaction_id }) )
+                    });
+
+                    paymentView.on('wizard:success', function () {
+                        this.success( transaction_id );
+                    }, controller);
+
+                    paymentView.on('wizard:verify', function () {
+                        this.customer( transaction_id, customer_id );
+                    }, controller);
+
+                    $.when(
+                        controller.templateManager.template('payment')
+                    ).done(function () {
+                        app.wizard.show(paymentView);
+                    });
                 });
             } else {
-                this.showSuccess();
+                this.success(transaction_id);
             }
         },
 
-        showSuccess: function () {
-            //var state = BackboneWizard.state;
+        success: function (transaction_id) {
+            var controller = this,
+                state = Wizard.state,
+                itemList,
+                customerList,
+                transaction = Wizard.transactionList.findWhere({ id: Number( transaction_id ) }),
+                customer_id = transaction.get('customer');
 
-            if (BackboneWizard.state === 'success') {
+            if (state === 'success') {
+                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/success');
 
-                BackboneWizard.wizardRouter.navigate('#/success');
+                itemList = new app.Collections.ItemList();
 
-                var successView = new app.Views.SuccessView({ model: BackboneWizard.transaction });
+                itemList.fetch().done(function (response) {
+                    var items = _.where(response, { transaction: Number( transaction_id ) });
 
-                $.when(
-                    this.templateManager.template('success')
-                ).done(function () {
-                    app.wizard.show(successView);
+                    customerList = new app.Collections.CustomerList();
+
+                    customerList.fetch().done(function (response) {
+                        var customer = _.findWhere(response, { id: Number( customer_id ) });
+                        var successModel = new Backbone.Model({
+                            'items': items,
+                            'customer': customer
+                        });
+                        var successView = controller.currentView = new app.Views.SuccessView({ model: successModel });
+
+                        $.when(
+                            controller.templateManager.template('success')
+                        ).done(function () {
+                            app.wizard.show(successView);
+                        });
+                    });
                 });
             }
 
-            if (BackboneWizard.state === 'index') {
-                this.index();
+            if (state === 'index') {
+                this.transaction(transaction_id);
             }
 
-            if (BackboneWizard.state === 'verify') {
-                this.showVerify();
+            if (state === 'verify') {
+                this.customer(transaction_id, customer_id);
             }
 
-            if (BackboneWizard.state === 'payment') {
-                this.showPayment();
+            if (state === 'payment') {
+                this.payment(transaction_id, customer_id);
             }
         },
 
         templateManager: new Marionette.TemplateManager()
 
     });
-}, BackboneWizard);
+}, Wizard);
