@@ -4,9 +4,11 @@
 
 ## Frameworks
 
-* Backbones.js
+* Backbone.js
 * Backbone.js + Require.js
 * Marionette.js
+* Ember.js
+* Angular.js
 
 ## Get Started
 
