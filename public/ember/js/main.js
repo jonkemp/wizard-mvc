@@ -20,7 +20,7 @@ Wizard.initializer({
 
         Wizard.State.set('state', 'index');
 
-        $.get('./transactionData.json').done(function (data) {
+        $.get('/transactionData.json').done(function (data) {
             var store = container.lookup('store:main');
 
             for(var i = 0; i < data.length; i++) {
@@ -30,7 +30,7 @@ Wizard.initializer({
             application.advanceReadiness();
         });
 
-        $.get('./appData.json').done(function (data) {
+        $.get('/appData.json').done(function (data) {
             var store = container.lookup('store:main');
 
             for(var i = 0; i < data.length; i++) {
@@ -38,7 +38,7 @@ Wizard.initializer({
             }
         });
 
-        $.get('./itemData.json').done(function (data) {
+        $.get('/itemData.json').done(function (data) {
             var store = container.lookup('store:main');
 
             for(var i = 0; i < data.length; i++) {

@@ -11,7 +11,7 @@ define([
 
         model: Customer,
 
-        url: '/backbone/appData.json'
+        url: '/appData.json'
 
     });
 

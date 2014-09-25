@@ -11,7 +11,7 @@ define([
 
         model: Transaction,
 
-        url: '/backbone/transactionData.json'
+        url: '/transactionData.json'
 
     });
 

@@ -10,7 +10,7 @@ define([
 
         model: Item,
 
-        url: '/backbone/itemData.json'
+        url: '/itemData.json'
 
     });
 

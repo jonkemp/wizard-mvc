@@ -6,7 +6,7 @@ app.module('Collections', function (Collections, app, Backbone) {
 
         model: app.Models.Item,
 
-        url: '/backbone-marionette/itemData.json'
+        url: '/itemData.json'
 
     });
 });

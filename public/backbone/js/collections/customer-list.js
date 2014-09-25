@@ -9,7 +9,7 @@ Wizard.Collections = Wizard.Collections || {};
 
         model: Wizard.Models.Customer,
 
-        url: '/backbone/appData.json'
+        url: '/appData.json'
 
     });
 
