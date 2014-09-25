@@ -11,7 +11,7 @@ wizard.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider
             .when('/transaction/:transactionId', {
-                templateUrl: 'partials/item.html',
+                templateUrl: 'partials/transaction.html',
                 controller: 'TransactionCtrl'
             })
             .when('/transaction/:transactionId/customer/:customerId', {
