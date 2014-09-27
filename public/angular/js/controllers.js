@@ -33,7 +33,7 @@ wizardControllers.controller('CustomerCtrl', ['$scope', '$location', '$routePara
 
             $scope.params = $routeParams;
 
-            $scope.states = ["TN"];
+            $scope.states = ["TN", "VT"];
 
             $scope.nextStep = function () {
                 if ($scope.customerContact.$valid) {

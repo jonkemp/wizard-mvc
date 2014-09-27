@@ -1,7 +1,7 @@
 /* global $, Ember, Wizard */
 
 Wizard.CustomerIndexController = Ember.ObjectController.extend({
-    stateList: ["TN"],
+    stateList: ["TN", "VT"],
 
     actions: {
         nextStep: function () {
