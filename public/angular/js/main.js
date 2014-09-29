@@ -1,32 +1,42 @@
 /* global angular */
-'use strict';
+(function () {
+    'use strict';
 
-var wizard = angular.module('wizard', [
-    'ngRoute',
-    'wizardControllers',
-    'wizardServices'
-]);
-
-wizard.config(['$routeProvider',
-    function($routeProvider) {
+    function config($routeProvider) {
         $routeProvider
             .when('/transaction/:transactionId', {
-                templateUrl: 'partials/transaction.html',
-                controller: 'TransactionCtrl'
+                templateUrl: 'js/templates/transaction.html',
+                controller: 'TransactionCtrl',
+                controllerAs: 'ctrl'
             })
             .when('/transaction/:transactionId/customer/:customerId', {
-                templateUrl: 'partials/customer.html',
-                controller: 'CustomerCtrl'
+                templateUrl: 'js/templates/customer.html',
+                controller: 'CustomerCtrl',
+                controllerAs: 'ctrl'
             })
             .when('/transaction/:transactionId/customer/:customerId/payment', {
-                templateUrl: 'partials/payment.html',
-                controller: 'CustomerPaymentCtrl'
+                templateUrl: 'js/templates/payment.html',
+                controller: 'CustomerPaymentCtrl',
+                controllerAs: 'ctrl'
             })
             .when('/transaction/:transactionId/success', {
-                templateUrl: 'partials/success.html',
-                controller: 'TransactionSuccessCtrl'
+                templateUrl: 'js/templates/success.html',
+                controller: 'TransactionSuccessCtrl',
+                controllerAs: 'ctrl'
             })
             .otherwise({
                 redirectTo: '/transaction/1'
             });
-    }]);
+    }
+
+    angular.module('wizardControllers', []);
+
+    angular.module('wizardServices', ['ngResource']);
+
+    angular.module('wizard', [
+        'ngRoute',
+        'wizardControllers',
+        'wizardServices'
+    ])
+    .config(config);
+})();

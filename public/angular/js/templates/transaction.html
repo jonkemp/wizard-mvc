@@ -1,3 +1,4 @@
+<div class="row">
     <div class="row">
         <nav class="top-bar" data-topbar>
             <ul class="title-area">
@@ -10,9 +11,9 @@
 
     <div class="row" style="margin-bottom: 1em">
         <ul class="tabs">
-            <li class="tab-title active"><a href="#/transaction/{{ transaction.id }}">Shopping Cart</a></li>
-            <li class="tab-title"><a href="#/transaction/{{ transaction.id }}/customer/{{ transaction.customer }}">Customer Info</a></li>
-            <li class="tab-title"><a href="#/transaction/{{ transaction.id }}/customer/{{ transaction.customer }}/payment">Payment Info</a></li>
+            <li class="tab-title active"><a href="#/transaction/{{ ctrl.transaction.id }}">Shopping Cart</a></li>
+            <li class="tab-title"><a href="#/transaction/{{ ctrl.transaction.id }}/customer/{{ ctrl.transaction.customer }}">Customer Info</a></li>
+            <li class="tab-title"><a href="#/transaction/{{ ctrl.transaction.id }}/customer/{{ ctrl.transaction.customer }}/payment">Payment Info</a></li>
         </ul>
     </div>
 
@@ -33,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in items">
+                <tr ng-repeat="item in ctrl.items">
                     <td>{{ item.name }}</td>
                     <td>{{ item.description }}</td>
                     <td>{{ item.quantity }}</td>
@@ -46,3 +47,4 @@
     <div class="row">
         <a href="" id="next" class="button right" ng-click="nextStep()">Next</a>
     </div>
+</div>

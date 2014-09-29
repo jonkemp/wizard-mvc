@@ -1,3 +1,4 @@
+<div class="row">
     <div class="row">
         <nav class="top-bar" data-topbar>
             <ul class="title-area">
@@ -10,9 +11,9 @@
 
     <div class="row" style="margin-bottom: 1em">
         <ul class="tabs">
-            <li class="tab-title"><a href="#/transaction/{{ params.transactionId }}">Shopping Cart</a></li>
-            <li class="tab-title active"><a href="#/transaction/{{ params.transactionId }}/customer/{{ params.customerId }}">Customer Info</a></li>
-            <li class="tab-title"><a href="#/transaction/{{ params.transactionId }}/customer/{{ params.customerId }}/payment">Payment Info</a></li>
+            <li class="tab-title"><a href="#/transaction/{{ ctrl.params.transactionId }}">Shopping Cart</a></li>
+            <li class="tab-title active"><a href="#/transaction/{{ ctrl.params.transactionId }}/customer/{{ ctrl.params.customerId }}">Customer Info</a></li>
+            <li class="tab-title"><a href="#/transaction/{{ ctrl.params.transactionId }}/customer/{{ ctrl.params.customerId }}/payment">Payment Info</a></li>
         </ul>
     </div>
 
@@ -27,7 +28,7 @@
             <div class="row">
                 <div class="large-12 columns">
                     <label ng-class="{ 'error': customerContact.name.$invalid && customerContact.name.$dirty }">Name
-                        <input id="name" name="name" type="text" ng-model="customer.name" required>
+                        <input id="name" name="name" type="text" ng-model="ctrl.customer.name" required>
                     </label>
                     <small class="error" ng-show="customerContact.name.$invalid">Invalid entry</small>
                 </div>
@@ -35,7 +36,7 @@
             <div class="row">
                 <div class="large-12 columns">
                     <label ng-class="{ 'error': customerContact.address.$invalid && customerContact.address.$dirty }">Address
-                        <input id="address" name="address" type="text" ng-model="customer.address" required>
+                        <input id="address" name="address" type="text" ng-model="ctrl.customer.address" required>
                     </label>
                     <small class="error" ng-show="customerContact.address.$invalid">Invalid entry</small>
                 </div>
@@ -43,13 +44,13 @@
             <div class="row">
                 <div class="large-4 columns">
                     <label ng-class="{ 'error': customerContact.city.$invalid && customerContact.city.$dirty }"v>City
-                        <input id="city" name="city" type="text" ng-model="customer.city" required>
+                        <input id="city" name="city" type="text" ng-model="ctrl.customer.city" required>
                     </label>
                     <small class="error" ng-show="customerContact.city.$invalid">Invalid entry</small>
                 </div>
                 <div class="large-4 columns">
                     <label ng-class="{ 'error': customerContact.state.$invalid && customerContact.state.$dirty }">State
-                        <select name="state" ng-model="customer.state" ng-options="state for state in states track by state" required>
+                        <select name="state" ng-model="ctrl.customer.state" ng-options="state for state in ctrl.states track by state" required>
                             <option value="">Select</option>
                         </select>
                     </label>
@@ -57,7 +58,7 @@
                 </div>
                 <div class="large-4 columns">
                     <label ng-class="{ 'error': customerContact.zipcode.$invalid && customerContact.zipcode.$dirty }">Zip Code
-                        <input id="zipcode" name="zipcode" type="text" ng-model="customer.zipcode" required>
+                        <input id="zipcode" name="zipcode" type="text" ng-model="ctrl.customer.zipcode" required>
                     </label>
                     <small class="error" ng-show="customerContact.zipcode.$invalid">Invalid entry</small>
                 </div>
@@ -65,13 +66,13 @@
             <div class="row">
                 <div class="large-6 columns">
                     <label ng-class="{ 'error': customerContact.email.$invalid && customerContact.email.$dirty }">Email
-                        <input id="email" name="email" type="email" ng-model="customer.email" required>
+                        <input id="email" name="email" type="email" ng-model="ctrl.customer.email" required>
                     </label>
                     <small class="error" ng-show="customerContact.email.$invalid">Invalid entry</small>
                 </div>
                 <div class="large-6 columns">
                     <label ng-class="{ 'error': customerContact.phone.$invalid && customerContact.phone.$dirty }">Phone
-                        <input id="phone" name="phone" type="text" ng-model="customer.phone" required>
+                        <input id="phone" name="phone" type="text" ng-model="ctrl.customer.phone" required>
                     </label>
                     <small class="error" ng-show="customerContact.phone.$invalid">Invalid entry</small>
                 </div>
@@ -83,3 +84,4 @@
         <a href="" id="next" class="button right" ng-click="nextStep()">Next</a>
         <a href="" id="back" class="button secondary left" ng-click="previousStep()">Back</a>
     </div>
+</div>
