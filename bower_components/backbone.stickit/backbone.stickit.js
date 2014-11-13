@@ -5,7 +5,7 @@
 
   // Set up Stickit appropriately for the environment. Start with AMD.
   if (typeof define === 'function' && define.amd) {
-    define(['../underscore/underscore', 'backbone', 'exports'], factory);
+    define(['underscore', 'backbone', 'exports'], factory);
   }
 
   // Next for Node.js or CommonJS.
