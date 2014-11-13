@@ -10,7 +10,7 @@ define([
 
         model: Item,
 
-        url: '/itemData.json'
+        url: '/data/itemData.json'
 
     });
 

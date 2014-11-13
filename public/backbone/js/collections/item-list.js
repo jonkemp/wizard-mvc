@@ -9,7 +9,7 @@ Wizard.Collections = Wizard.Collections || {};
 
         model: Wizard.Models.Item,
 
-        url: '/itemData.json'
+        url: '/data/itemData.json'
 
     });
 

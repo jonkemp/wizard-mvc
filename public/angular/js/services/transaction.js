@@ -3,7 +3,7 @@
     'use strict';
 
     var Transaction = function ($resource) {
-        return $resource('/transactionData.json', null, {
+        return $resource('/data/transactionData.json', null, {
             'query':  { method: 'GET', isArray: true, cache: true }
         });
     };

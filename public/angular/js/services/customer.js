@@ -3,7 +3,7 @@
     'use strict';
 
     var Customer = function ($resource) {
-        return $resource('/appData.json', null, {
+        return $resource('/data/appData.json', null, {
             'query':  { method: 'GET', isArray: true, cache: true }
         });
     };

@@ -11,7 +11,7 @@ define([
 
         model: Customer,
 
-        url: '/appData.json'
+        url: '/data/appData.json'
 
     });
 

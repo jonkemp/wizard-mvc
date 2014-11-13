@@ -6,7 +6,7 @@ app.module('Collections', function (Collections, app, Backbone) {
 
         model: app.Models.Transaction,
 
-        url: '/transactionData.json'
+        url: '/data/transactionData.json'
 
     });
 });

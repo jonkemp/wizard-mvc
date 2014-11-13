@@ -11,7 +11,7 @@ define([
 
         model: Transaction,
 
-        url: '/transactionData.json'
+        url: '/data/transactionData.json'
 
     });
 
