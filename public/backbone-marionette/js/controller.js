@@ -16,7 +16,7 @@ app.module('Controllers', function (Controllers, app, Backbone, Marionette, $, _
                     transaction = Wizard.transactionList.findWhere({ id: Number( transaction_id ) }),
                     customer_id = transaction.get('customer');
 
-                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id);
+                Wizard.wizardRouter.navigate('transaction/' + transaction_id);
 
                 itemList = new app.Collections.ItemList();
 
@@ -54,7 +54,7 @@ app.module('Controllers', function (Controllers, app, Backbone, Marionette, $, _
                 var controller = this,
                     customerList;
 
-                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/customer/' + customer_id);
+                Wizard.wizardRouter.navigate('transaction/' + transaction_id + '/customer/' + customer_id);
 
                 customerList = new app.Collections.CustomerList();
 
@@ -89,7 +89,7 @@ app.module('Controllers', function (Controllers, app, Backbone, Marionette, $, _
                 var controller = this,
                     customerList;
 
-                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/customer/' + customer_id + '/payment');
+                Wizard.wizardRouter.navigate('transaction/' + transaction_id + '/customer/' + customer_id + '/payment');
 
                 customerList = new app.Collections.CustomerList();
 
@@ -128,7 +128,7 @@ app.module('Controllers', function (Controllers, app, Backbone, Marionette, $, _
                 customer_id = transaction.get('customer');
 
             if (state === 'success') {
-                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/success');
+                Wizard.wizardRouter.navigate('transaction/' + transaction_id + '/success');
 
                 itemList = new app.Collections.ItemList();
 

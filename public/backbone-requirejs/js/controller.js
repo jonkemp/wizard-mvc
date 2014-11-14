@@ -30,7 +30,7 @@ define([
                     controller.currentView.close();
                 }
 
-                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id);
+                Wizard.wizardRouter.navigate('transaction/' + transaction_id);
 
                 var itemList = new ItemList();
 
@@ -62,7 +62,7 @@ define([
                     controller.currentView.close();
                 }
 
-                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/customer/' + customer_id);
+                Wizard.wizardRouter.navigate('transaction/' + transaction_id + '/customer/' + customer_id);
 
                 customerList = new CustomerList();
 
@@ -97,7 +97,7 @@ define([
                     controller.currentView.close();
                 }
 
-                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/customer/' + customer_id + '/payment');
+                Wizard.wizardRouter.navigate('transaction/' + transaction_id + '/customer/' + customer_id + '/payment');
 
                 customerList = new CustomerList();
 
@@ -134,7 +134,7 @@ define([
             if (state === 'success') {
                 controller.currentView.close();
 
-                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/success');
+                Wizard.wizardRouter.navigate('transaction/' + transaction_id + '/success');
 
                 itemList = new ItemList();
 

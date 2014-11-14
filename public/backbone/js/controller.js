@@ -22,7 +22,7 @@ Wizard.Controllers = Wizard.Controllers || {};
                     controller.currentView.close();
                 }
 
-                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id);
+                Wizard.wizardRouter.navigate('transaction/' + transaction_id, {trigger: false});
 
                 itemList = new Wizard.Collections.ItemList();
 
@@ -54,7 +54,7 @@ Wizard.Controllers = Wizard.Controllers || {};
                     controller.currentView.close();
                 }
 
-                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/customer/' + customer_id);
+                Wizard.wizardRouter.navigate('transaction/' + transaction_id + '/customer/' + customer_id, {trigger: false});
 
                 customerList = new Wizard.Collections.CustomerList();
 
@@ -89,7 +89,7 @@ Wizard.Controllers = Wizard.Controllers || {};
                     controller.currentView.close();
                 }
 
-                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/customer/' + customer_id + '/payment');
+                Wizard.wizardRouter.navigate('transaction/' + transaction_id + '/customer/' + customer_id + '/payment');
 
                 customerList = new Wizard.Collections.CustomerList();
 
@@ -126,7 +126,7 @@ Wizard.Controllers = Wizard.Controllers || {};
             if (state === 'success') {
                 controller.currentView.close();
 
-                Wizard.wizardRouter.navigate('#/transaction/' + transaction_id + '/success');
+                Wizard.wizardRouter.navigate('transaction/' + transaction_id + '/success');
 
                 itemList = new Wizard.Collections.ItemList();
 
