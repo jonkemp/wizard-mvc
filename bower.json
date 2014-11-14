@@ -2,21 +2,18 @@
   "name": "wizard-mvc",
   "private": true,
   "dependencies": {
-    "normalize.css": "~3.0.1",
+    "normalize.css": "~3.0.2",
     "backbone": "~1.1.2",
     "backbone.stickit": "~0.8.0",
     "foundation": "~5.3.3",
-    "requirejs": "~2.1.14",
+    "requirejs": "~2.1.15",
     "requirejs-text": "~2.0.12",
     "backbone.marionette": "~2.1.0",
-    "ember": "~1.6.1",
+    "ember": "~1.8.1",
     "ember-data": "~1.0.0",
-    "angular": "~1.2.23",
-    "angular-route": "~1.2.23",
-    "angular-resource": "~1.2.23"
+    "angular": "~1.2.26",
+    "angular-route": "~1.2.26",
+    "angular-resource": "~1.2.26"
   },
-  "devDependencies": {},
-  "resolutions": {
-    "ember": "~1.6.1"
-  }
+  "devDependencies": {}
 }
